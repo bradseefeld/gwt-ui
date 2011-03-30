@@ -1,0 +1,15 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+	<ui:style>
+		.toolbar {
+			border-bottom: 1px solid #ccc;
+			background:#f0f4f5;
+			padding: 2px;
+			min-height: 27px;
+			margin: 0px;
+		}
+	</ui:style>
+	<g:FlowPanel ui:field="toolbar" addStyleNames="{style.toolbar}">
+	</g:FlowPanel>
+</ui:UiBinder>

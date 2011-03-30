@@ -1,0 +1,10 @@
+This project is intended to create production ready UI components on the GWT 
+framework. It aims to use no dependencies other than the GWT itself and to be
+as fast as possible. It also aims to follow the GWT architecture as closely
+as possible. For example, using tools provided such as UIBinder, ClientBundle, etc.
+
+Goals:
+
+* Speed. As fast as possible!
+* Download size. Few dependencies. Few/none external resources such as images/css.
+* Follow the GWT design (UiBinder, ClientBundle, i18n, etc)

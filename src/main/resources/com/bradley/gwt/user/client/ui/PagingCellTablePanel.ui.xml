@@ -1,0 +1,18 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'
+	xmlns:m='urn:import:com.bradley.gwt.user.client.ui'>
+
+	<ui:style>
+		.body {
+			overflow: auto;
+		}
+		.body table {
+			width: 100%;
+		}
+	</ui:style>
+	<g:FlowPanel ui:field="panel">
+		<m:ToolBar ui:field="toolbar"></m:ToolBar>
+		<g:SimplePanel ui:field="body" addStyleNames="{style.body}"></g:SimplePanel>
+		<g:SimplePanel ui:field="footer"></g:SimplePanel>
+	</g:FlowPanel>
+</ui:UiBinder>

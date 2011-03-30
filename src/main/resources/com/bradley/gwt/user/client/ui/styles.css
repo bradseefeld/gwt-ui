@@ -1,0 +1,63 @@
+.button-mouse-over {
+	color: #222 !important;
+	background-color: #ddd;
+	background-image: none;
+}
+.button-icon {
+	padding-right: 5px;
+	display:block;
+	float: left;
+}
+.button-label {
+	margin-top: 0px;
+	padding-top: 3px;
+	display:block;
+	float: left;
+}
+.scrolled-dialog {
+	border: 2px solid #999;
+	-moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -khtml-border-radius: 6px;
+    border-radius: 6px;
+}
+
+@external .dialogTop;
+.scrolled-dialog .dialogTop {
+	background-color: #ddd;
+}
+@external .dialogTopCenterInner;
+.scrolled-dialog .dialogTopCenterInner {
+	font-size: 12px;
+	font-weight: bold;
+	padding-top: 7px;
+	color: #666;
+	padding-left: 7px;
+}
+.scrolled-dialog .dialogTopCenterInner button {
+	float: right;
+	font-size: 11px;
+	margin-top: -2px;
+}
+.scrolled-dialog .dialogTopCenterInner table {
+	width: 100%;
+}
+@external .dialogMiddleCenter;
+.scrolled-dialog .dialogMiddleCenter {
+	padding: 0px;
+}
+
+@external .dialogTopLeft, .dialogTopRight, .dialogMiddleLeft, .dialogMiddleRight, .dialogBottomLeft, .dialogBottomRight, .dialogBottomCenter;
+.scrolled-dialog .dialogTopLeft, 
+.scrolled-dialog .dialogTopRight,
+.scrolled-dialog .dialogMiddleLeft,
+.scrolled-dialog .dialogMiddleRight,
+.scrolled-dialog .dialogBottomLeft,
+.scrolled-dialog .dialogBottomRight,
+.scrolled-dialog .dialogBottomCenter {
+	background: none;
+	padding: 0px;
+	margin: 0px;
+	border-spacing: 0px;
+	display: none;
+}

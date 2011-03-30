@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='demo'>
+	<!-- Inherit the core Web Toolkit stuff.                        -->
+	<inherits name='com.bradley.gwt.user.GwtUI' />
+	<entry-point class='com.bradley.gwt.demo.user.client.TestApp' />
+	<source path="client" />
+</module>

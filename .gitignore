@@ -1,0 +1,12 @@
+.classpath
+.project
+.settings
+*.launch
+war/WEB-INF/classes/
+war/WEB-INF/lib/
+target/*
+*~
+
+*.cmd
+tomcat/
+
