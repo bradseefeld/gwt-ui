@@ -1,4 +1,4 @@
-package com.bradley.gwt.user.client.ui;
+package com.bradley.gwt.user.client.celltable;
 
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.cell.client.Cell;

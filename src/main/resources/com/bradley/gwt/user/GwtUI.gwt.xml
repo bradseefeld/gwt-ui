@@ -9,8 +9,8 @@
 	<inherits name="com.google.gwt.requestfactory.RequestFactory"/>
 	
 	<set-property name="gwt.logging.logLevel" value="INFO"/>
-    <set-property name="gwt.logging.enabled" value="TRUE"/>
-    <!-- <set-property name="gwt.logging.popupLogHandler" value="DISABLED"/>-->
+    <set-property name="gwt.logging.enabled" value="FALSE"/>
+    <set-property name="gwt.logging.popupHandler" value="DISABLED"/>
     
 	<source path="client" />
 </module>

@@ -1,4 +1,4 @@
-package com.bradley.gwt.user.client.ui;
+package com.bradley.gwt.user.client.celltable;
 
 import com.google.gwt.user.cellview.client.CellTable;
 

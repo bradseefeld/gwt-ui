@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.bradley.gwt.user.client.celltable.TextTitleCell;
 import com.google.gwt.cell.client.Cell.Context;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 

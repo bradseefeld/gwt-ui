@@ -1,8 +1,8 @@
-package com.bradley.gwt.user.client.ui;
+package com.bradley.gwt.user.client.resource;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;
-import com.google.gwt.resources.client.CssResource.NotStrict;
+import com.google.gwt.resources.client.ImageResource;
 
 public interface UIClientBundle extends ClientBundle {
 
@@ -10,4 +10,7 @@ public interface UIClientBundle extends ClientBundle {
 	
 	@Source("styles.css")
 	UICssResource getUICssResource();
+	
+	@Source("image/tick.png")
+	ImageResource tick();
 }

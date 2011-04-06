@@ -5,10 +5,10 @@ import java.util.Map;
 import com.bradley.gwt.demo.user.client.entity.EmployeeProxy;
 import com.bradley.gwt.demo.user.client.request.EmployeeRequest;
 import com.bradley.gwt.demo.user.client.request.EmployeeRequestFactory;
-import com.bradley.gwt.user.client.ui.CellTableResources;
-import com.bradley.gwt.user.client.ui.PagingCellTablePanel;
+import com.bradley.gwt.user.client.celltable.CellTableResources;
+import com.bradley.gwt.user.client.celltable.PagingCellTablePanel;
+import com.bradley.gwt.user.client.celltable.TextColumn;
 import com.bradley.gwt.user.client.ui.ScrollableDialogBox;
-import com.bradley.gwt.user.client.ui.TextTitleColumn;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
@@ -22,7 +22,7 @@ public class TestApp implements EntryPoint {
 		
 		CellTableResources resources = GWT.create(CellTableResources.class);
 		CellTable<EmployeeProxy> table = new CellTable<EmployeeProxy>(15, resources);
-		TextTitleColumn<EmployeeProxy> nameColumn = new TextTitleColumn<EmployeeProxy>() {
+		TextColumn<EmployeeProxy> nameColumn = new TextColumn<EmployeeProxy>() {
 
 			@Override
 			public String getValue(EmployeeProxy e) {
@@ -33,22 +33,11 @@ public class TestApp implements EntryPoint {
 		
 		table.addColumn(nameColumn, "First name");
 		
-		TextTitleColumn<EmployeeProxy> lastName = new TextTitleColumn<EmployeeProxy>() {
-			
-			@Override
-			public String getValue(EmployeeProxy e) {
-				return e.getLastName();
-			}
-		};
-		lastName.setSortable(true);
-		table.addColumn(lastName, "Last name");
-		
 		final EmployeeRequestFactory reqFactory = GWT.create(EmployeeRequestFactory.class);
 		EventBus eventBus = new SimpleEventBus();
-		reqFactory.initialize(eventBus);
 		
 		
-		PagingCellTablePanel<EmployeeProxy> panel = new PagingCellTablePanel<EmployeeProxy>(table) {
+		PagingCellTablePanel<EmployeeProxy> panel = new PagingCellTablePanel<EmployeeProxy>() {
 
 			@Override
 			public void paginate(int offset, int limit, String sortColumn,
@@ -62,6 +51,8 @@ public class TestApp implements EntryPoint {
 				count(request.count());
 			}
 		};
+		
+		panel.initialize(table, reqFactory, eventBus);
 		
 		ScrollableDialogBox box = new ScrollableDialogBox();
 		box.setWidget(panel);

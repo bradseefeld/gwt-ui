@@ -1,16 +1,19 @@
-package com.bradley.gwt.user.client.ui;
+package com.bradley.gwt.user.client.celltable;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import com.bradley.gwt.user.client.ui.ToolBar;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.requestfactory.shared.EntityProxy;
 import com.google.gwt.requestfactory.shared.Receiver;
 import com.google.gwt.requestfactory.shared.Request;
+import com.google.gwt.requestfactory.shared.RequestFactory;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.AbstractPager;
@@ -60,32 +63,35 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 	protected static final int PAGE_SIZE = 25;
 	
 	private static final Logger logger = Logger.getLogger(PagingCellTablePanel.class.getName());
-
-	public PagingCellTablePanel(CellTable<T> table) {
-		this(table, new SimplePager());
+	
+	public PagingCellTablePanel() {
+		this(new SimplePager());
 		
 		SimplePager p = (SimplePager) pager;
 		p.setPageSize(PAGE_SIZE);
 	}
 	
-	public PagingCellTablePanel(CellTable<T> table, AbstractPager pager) {
-
-		this.table = table;
+	public PagingCellTablePanel(AbstractPager pager) {
 		this.pager = pager;
-
+	}
+	
+	public void initialize(CellTable<T> table, RequestFactory requestFactory, EventBus eventBus) {
+		this.table = table;
+		
+		requestFactory.initialize(eventBus);
+		
 		Binder binder = GWT.create(Binder.class);
 		initWidget(binder.createAndBindUi(this));
 		body.setWidget(table);
 		
-		body.setSize("600px", "400px");
+		// TODO body should automatically be height of window - footer/header size
+		//body.setSize("600px", "400px");
 		footer.setWidget(pager);
 		
 		toolbar.setVisible(false);
 		
 		initializePagination(pager);
 		initializeSorting();
-		
-		// TODO It might be helpful to periodically update the count in the paginator.
 	}
 	
 	/**
@@ -138,7 +144,7 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 			@Override
 			protected void onRangeChanged(HasData<T> display) {
 				Range r = display.getVisibleRange();
-				paginate(r.getStart(), r.getLength(), "todo", true);
+				paginate(r.getStart(), r.getLength(), null, true);
 			}
 		};
 		
@@ -152,7 +158,7 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 			
 			@Override
 			public void execute() {
-				//count();
+				count();
 			}
 		});
 	}
@@ -180,7 +186,8 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 			@Override
 			public void onColumnSort(ColumnSortEvent event) {
 				Range r = table.getVisibleRange();
-				paginate(r.getStart(), r.getLength(), "todo", event.isSortAscending());
+				//paginate(r.getStart(), r.getLength(), "todo", event.isSortAscending());
+				logger.severe("I would like to paginate, but it isnt wired up yet.");
 			}
 		};
 	    table.addColumnSortHandler(columnSortHandler);

@@ -1,4 +1,4 @@
-package com.bradley.gwt.user.client.ui;
+package com.bradley.gwt.user.client.celltable;
 
 import com.google.gwt.user.cellview.client.Column;
 
@@ -11,9 +11,9 @@ import com.google.gwt.user.cellview.client.Column;
  *
  * @param <T>
  */
-public abstract class TextTitleColumn<T> extends Column<T, String>{
+public abstract class TextColumn<T> extends Column<T, String>{
 
-	public TextTitleColumn() {
+	public TextColumn() {
 		super(new TextTitleCell());
 	}
 }

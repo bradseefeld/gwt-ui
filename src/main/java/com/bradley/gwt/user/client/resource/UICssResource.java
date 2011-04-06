@@ -1,4 +1,4 @@
-package com.bradley.gwt.user.client.ui;
+package com.bradley.gwt.user.client.resource;
 
 import com.google.gwt.resources.client.CssResource;
 
