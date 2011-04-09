@@ -13,4 +13,10 @@ public interface UIClientBundle extends ClientBundle {
 	
 	@Source("image/tick.png")
 	ImageResource tick();
+	
+	@Source("image/error.png")
+	ImageResource warn();
+	
+	@Source("image/exclamation.png")
+	ImageResource error();
 }

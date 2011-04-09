@@ -8,18 +8,38 @@ import com.bradley.gwt.demo.user.client.request.EmployeeRequestFactory;
 import com.bradley.gwt.user.client.celltable.CellTableResources;
 import com.bradley.gwt.user.client.celltable.PagingCellTablePanel;
 import com.bradley.gwt.user.client.celltable.TextColumn;
+import com.bradley.gwt.user.client.ui.Notifier;
 import com.bradley.gwt.user.client.ui.ScrollableDialogBox;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.RootPanel;
 
 public class TestApp implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
 		
+		
+		//demoCellTableDialog();
+		demoNotifications();
+		
+	}
+	
+	protected void demoNotifications() {
+		Notifier notifier = new Notifier();
+		RootPanel.get().add(notifier);
+		
+		notifier.success("this is a test success message!");
+		notifier.error("This is a test error message!");
+		notifier.warn("This is a test warning message!");
+		notifier.info("This is a test info message!");
+	}
+	
+	protected void demoCellTableDialog() {
 		CellTableResources resources = GWT.create(CellTableResources.class);
 		CellTable<EmployeeProxy> table = new CellTable<EmployeeProxy>(15, resources);
 		TextColumn<EmployeeProxy> nameColumn = new TextColumn<EmployeeProxy>() {
@@ -56,11 +76,8 @@ public class TestApp implements EntryPoint {
 		
 		ScrollableDialogBox box = new ScrollableDialogBox();
 		box.setWidget(panel);
-		//box.setSizePx(400, 300);
 		box.setText("Employees");		
 		box.show();
-		
-		//RootPanel.get().add(panel);
 	}
 
 }
