@@ -11,9 +11,6 @@ import com.google.gwt.user.client.ui.SimplePanel;
 /**
  * Provides a notification area to display messages to the user. This class should
  * probably be a Singleton when it is used. Use GIN to achieve singleton.
- * 
- * TODO Make this part of GWT-UI
- *
  */
 public class Notifier extends FlowPanel {
 

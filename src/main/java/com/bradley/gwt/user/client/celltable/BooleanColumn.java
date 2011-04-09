@@ -7,5 +7,4 @@ public abstract class BooleanColumn<T> extends Column<T, Boolean>{
 	public BooleanColumn() {
 		super(new BooleanCell());
 	}
-
 }

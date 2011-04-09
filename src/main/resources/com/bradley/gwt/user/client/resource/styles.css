@@ -81,8 +81,8 @@
 }
 @sprite .notifications .notification .success {
 	gwt-image: "tick";
-	width: 100%;
-	height: 100%;
+	width: auto;
+	height: auto;
 	padding-left: 23px;
 }
 .notifications .notification.info {
@@ -96,8 +96,8 @@
 }
 @sprite .notifications .notification .warn {
 	gwt-image: "warn";
-	width: 100%;
-	height: 100%;
+	width: auto;
+	height: auto;
 	padding-left: 23px;
 }
 .notifications .notification.error {
@@ -107,8 +107,8 @@
 }
 @sprite .notifications .notification .error {
 	gwt-image: "error";
-	width: 100%;
-	height: 100%;
+	width: auto;
+	height: auto;
 	padding-left: 23px;
 }
 	
