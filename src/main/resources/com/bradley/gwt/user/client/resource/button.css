@@ -1,0 +1,9 @@
+@external .gwt-PushButton;
+.gwt-PushButton {
+	display: inline-block;
+	font-size: 11px;
+	-moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+}
+.button{}

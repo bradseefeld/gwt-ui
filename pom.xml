@@ -111,6 +111,11 @@
 				<configuration>
 					<runTarget>demo.html</runTarget>
 					<hostedWebapp>${webappDirectory}</hostedWebapp>
+					<resourceBundles>
+						<resourceBundle>com.bradley.gwt.user.client.ui.resource.UIClientBundle</resourceBundle>
+						<resourceBundle>com.bradley.gwt.user.client.ui.SaveButton.SaveResources</resourceBundle>
+						<resourceBundle>com.bradley.gwt.user.client.ui.SaveButton.CancelResources</resourceBundle>
+					</resourceBundles>
 				</configuration>
 			</plugin>
 			<!-- Copy static web files before executing gwt:run -->

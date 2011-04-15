@@ -8,14 +8,15 @@ import com.bradley.gwt.demo.user.client.request.EmployeeRequestFactory;
 import com.bradley.gwt.user.client.celltable.CellTableResources;
 import com.bradley.gwt.user.client.celltable.PagingCellTablePanel;
 import com.bradley.gwt.user.client.celltable.TextColumn;
+import com.bradley.gwt.user.client.ui.CancelButton;
 import com.bradley.gwt.user.client.ui.Notifier;
+import com.bradley.gwt.user.client.ui.SaveButton;
 import com.bradley.gwt.user.client.ui.ScrollableDialogBox;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 
 public class TestApp implements EntryPoint {
@@ -26,7 +27,12 @@ public class TestApp implements EntryPoint {
 		
 		//demoCellTableDialog();
 		demoNotifications();
-		
+		demoButtons();
+	}
+	
+	protected void demoButtons() {
+		RootPanel.get().add(new SaveButton());
+		RootPanel.get().add(new CancelButton());
 	}
 	
 	protected void demoNotifications() {

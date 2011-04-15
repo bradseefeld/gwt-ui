@@ -1,0 +1,10 @@
+@sprite .button div {
+	gwt-image: "save";
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 18px;
+	height: auto;
+	width: auto;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
