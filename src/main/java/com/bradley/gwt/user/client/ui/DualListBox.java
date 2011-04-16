@@ -1,6 +1,8 @@
 package com.bradley.gwt.user.client.ui;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -8,15 +10,36 @@ import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.user.client.ui.ListBox;
 
 /**
- * For now the type has to be of type String. We will refactor this as needed to
- * support more complex types.
+ * A Multiselect list that can be used with the Editor framework. 
  * 
- * @param <T> Must be of type string for now.
+ * TODO: Make this widget sexy. Its not actually a DualList yet. We want dual list!
+ * Jquery has a pretty cool plugin for this... maybe we use that? Something like:
+ * 
+ * http://www.erichynds.com/jquery/jquery-ui-multiselect-widget/
+ * http://quasipartikel.at/multiselect/
+ * 
+ * @param <T> The type to display in the list box
  */
 public class DualListBox<T> extends ListBox implements LeafValueEditor<Set<T>> {
-
+	
+	/** A map of html option value (String) to complex object type. */
+	protected Map<String, T> values;
+	
+	/** Internal class level logger. */
+	private static final Logger LOG = Logger.getLogger(DualListBox.class.getName());
+	
+	/**
+	 * Default constructor.
+	 */
 	public DualListBox() {
 		super(true);
+		
+		values = new HashMap<String, T>();
+	}
+	
+	public void addItem(T item) {
+		values.put(valueOf(item), item);
+		addItem(item.toString(), "" + item.hashCode());
 	}
 	
 	@Override
@@ -25,31 +48,40 @@ public class DualListBox<T> extends ListBox implements LeafValueEditor<Set<T>> {
 			return;
 		}
 		
-		for (T value : values) {
-			for (int i = 0; i < getItemCount(); i++) {
-				if (getValue(i).equals(value)) {
+		for (int i = 0; i < getItemCount(); i++) {
+			for (T value : values) {
+				if (getValue(i).equals(valueOf(value))) {
 					setItemSelected(i, true);
-				} else {
-					setItemSelected(i, false);
 				}
 			}
 		}
-		
 	}
 
 	@Override
 	public Set<T> getValue() {
-		Logger log = Logger.getLogger(DualListBox.class.getName());
-		Set<T> values = new HashSet<T>();
+		
+		Set<T> results = new HashSet<T>();
 		for (int i = 0; i < getItemCount(); i++) {
 			if (isItemSelected(i)) {
-				log.info(getValue(i) + " was selected.");
-				values.add((T) getValue(i));
+				results.add(values.get(getValue(i)));
 			}
 		}
 		
-		log.info(values.toString());
+		LOG.fine("Dual list box selected values are: " + results.toString());
+		return results;
+	}
+	
+	/**
+	 * Convert this value to a simple String. Should be unique per item given.
+	 * 
+	 * @param item
+	 * @return
+	 */
+	protected String valueOf(T item) {
+		if (item == null) {
+			return "";
+		}
 		
-		return values;
+		return "" + item.hashCode();
 	}
 }
