@@ -12,5 +12,37 @@
     <set-property name="gwt.logging.enabled" value="FALSE"/>
     <set-property name="gwt.logging.popupHandler" value="DISABLED"/>
     
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js" />
+	<stylesheet src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/ui-lightness/jquery-ui.css" />
+	
 	<source path="client" />
+	
+	<!-- Automatically remove deprecated classes from compilation -->
+	<extend-configuration-property name="rpc.blacklist"
+		value="com.google.gwt.user.client.ui.ChangeListenerCollection" />
+	<extend-configuration-property name="rpc.blacklist"
+		value="com.google.gwt.user.client.ui.ClickListenerCollection" />
+	<extend-configuration-property name="rpc.blacklist"
+		value="com.google.gwt.user.client.ui.FocusListenerCollection" />
+	<extend-configuration-property name="rpc.blacklist"
+		value="com.google.gwt.user.client.ui.FormHandlerCollection" />
+	<extend-configuration-property name="rpc.blacklist"
+		value="com.google.gwt.user.client.ui.KeyboardListenerCollection" />
+	<extend-configuration-property name="rpc.blacklist"
+		value="com.google.gwt.user.client.ui.LoadListenerCollection" />
+	<extend-configuration-property name="rpc.blacklist"
+		value="com.google.gwt.user.client.ui.MouseListenerCollection" />
+	<extend-configuration-property name="rpc.blacklist"
+		value="com.google.gwt.user.client.ui.MouseWheelListenerCollection" />
+	<extend-configuration-property name="rpc.blacklist"
+		value="com.google.gwt.user.client.ui.PopupListenerCollection" />
+	<extend-configuration-property name="rpc.blacklist"
+		value="com.google.gwt.user.client.ui.ScrollListenerCollection" />
+	<extend-configuration-property name="rpc.blacklist"
+		value="com.google.gwt.user.client.ui.TabListenerCollection" />
+	<extend-configuration-property name="rpc.blacklist"
+		value="com.google.gwt.user.client.ui.TableListenerCollection" />
+	<extend-configuration-property name="rpc.blacklist"
+		value="com.google.gwt.user.client.ui.TreeListenerCollection" />
 </module>

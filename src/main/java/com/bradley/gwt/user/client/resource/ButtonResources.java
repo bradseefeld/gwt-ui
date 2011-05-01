@@ -11,6 +11,6 @@ public interface ButtonResources extends ClientBundle {
 		String button();
 	}
 
-	@Source("../resource/button.css")
+	@Source("button.css")
 	Style style();
 }

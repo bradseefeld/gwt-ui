@@ -8,3 +8,22 @@ Goals:
 * Speed. As fast as possible!
 * Download size. Few dependencies. Few/none external resources such as images/css.
 * Follow the GWT design (UiBinder, ClientBundle, i18n, etc)
+
+Rationale for requiring jQuery:
+We have found GWT to be awesome for implementing business logic and client/server
+communication. However, it is annoyingly difficult to progressively enhance UI
+widgets in the same manner that jQuery and other CSS selector based frameworks
+provide. Consider the following example where we wish to find enhance forms such
+that all labels and text fields are aligned vertically:
+
+<pre>
+label          field
+longer label   field
+</pre>
+
+We could get this style with absolute widths on the labels, but that goes
+against the goal of this project (production ready style by default). GWT doesnt
+provide a convenient way to select all elements within a certain region and apply
+some style/behavior so we have opted to use jQuery and these few cases where we
+want to enhance many widgets by default. jQuery will only be used to enhance existing
+functionality.
