@@ -40,6 +40,9 @@ public class DualListBox<M, T> extends ListBox implements LeafValueEditor<Set<T>
 	
 	protected Set<T> lazySelectValues;
 	
+	/** True if the widget has been enhanced by jquery. */
+	protected boolean enhanced = false;
+	
 	/** Internal class level logger. */
 	private static final Logger LOG = Logger.getLogger(DualListBox.class.getName());
 	

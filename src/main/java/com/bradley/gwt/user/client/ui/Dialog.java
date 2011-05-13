@@ -43,6 +43,9 @@ public class Dialog implements HasOneWidget {
 		dialog(w.getElement(), title, modal);
 	}
 	
+	/**
+	 * Show the dialog.
+	 */
 	public void show() {
 		if (widget == null) {
 			throw new IllegalArgumentException("Widget has not been initialized yet.");
@@ -51,6 +54,9 @@ public class Dialog implements HasOneWidget {
 		callDialogMethod(widget.getElement(), "open");
 	}
 	
+	/**
+	 * Hide the dialog.
+	 */
 	public void hide() {
 		if (widget == null) {
 			throw new IllegalArgumentException("Widget has not been initialized yet.");
@@ -58,6 +64,20 @@ public class Dialog implements HasOneWidget {
 		
 		callDialogMethod(widget.getElement(), "close");
 	}
+	
+	/**
+	 * Set the minimum width of the Dialog window. The widget will not be able to resized
+	 * smaller than this width.
+	 * 
+	 * @param pixelWidth The smallest width in pixels.
+	 */
+	public void setMinWidth(int pixelWidth) {
+		setMinWidth(widget.getElement(), pixelWidth);
+	}
+	
+	protected static native void setMinWidth(Element el, int pixelWidth)/*-{
+		$wnd.$(el).dialog("option", "minWidth", pixelWidth);
+	}-*/;
 	
 	protected static native void callDialogMethod(Element el, String method)/*-{
 		$wnd.$(el).dialog(method);

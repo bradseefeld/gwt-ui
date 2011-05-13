@@ -9,6 +9,7 @@ import com.bradley.gwt.user.client.celltable.CellTableResources;
 import com.bradley.gwt.user.client.celltable.PagingCellTablePanel;
 import com.bradley.gwt.user.client.celltable.TextColumn;
 import com.bradley.gwt.user.client.ui.CancelButton;
+import com.bradley.gwt.user.client.ui.ComboBox;
 import com.bradley.gwt.user.client.ui.Dialog;
 import com.bradley.gwt.user.client.ui.EditorPanel;
 import com.bradley.gwt.user.client.ui.Notifier;
@@ -35,6 +36,14 @@ public class TestApp implements EntryPoint {
 		//demoEditorPanel();
 		demoMasking();
 		demoDialog();
+		demoComboBox();
+	}
+	
+	protected void demoComboBox() {
+		ComboBox<String> combo = new ComboBox<String>();
+		combo.addItem("test");
+		combo.addItem("test 2");
+		RootPanel.get().add(combo);
 	}
 	
 	protected void demoDialog() {
