@@ -14,7 +14,6 @@
   padding: 3px 15px; 
   text-align: left; 
   color: #4b4a4a; 
-  text-shadow: #ddf 1px 1px 0; 
 } 
 
 .cellTableHeader { 
@@ -22,8 +21,7 @@
   padding: 3px 6px 3px 6px; 
   text-align: left; 
   font-size:14px; 
-  color: #4b4a4a; 
-  cursor: pointer; /* TODO We only want to do this if its sortable! */
+  color: #4b4a4a;
 } 
 
 .cellTableCell { 
@@ -45,10 +43,11 @@
 
 }
 .cellTableSortedHeaderDescending {
-	
+	cursor: pointer;
 }
 
 .cellTableSortedHeaderAscending {
+	cursor: pointer;
 }
 
 .cellTableEvenRow { 
@@ -68,7 +67,7 @@
 } 
 
 .cellTableHoveredRow { 
-  background: #ffffcc; 
+  background: #AFDE41; 
 } 
 
 .cellTableHoveredRowCell { 

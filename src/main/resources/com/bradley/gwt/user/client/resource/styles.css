@@ -117,3 +117,24 @@
 	color: #999;
 	font-style: italic;
 }
+
+/**
+ * Fixes for jQuery UI
+ */
+@external .ui-widget, .ui-dialog, .ui-dialog-titlebar, .ui-dialog-content;
+.ui-widget {
+	font-family: inherit;
+	font-size: inherit;
+}
+.ui-dialog {
+	padding: 0px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+.ui-dialog-titlebar {
+	border-radius: 0px;
+}
+.ui-dialog .ui-dialog-content {
+	padding-top: 2px;
+}

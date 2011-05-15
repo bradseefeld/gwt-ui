@@ -11,6 +11,7 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.requestfactory.shared.EntityProxy;
+import com.google.gwt.requestfactory.shared.EntityProxyChange;
 import com.google.gwt.requestfactory.shared.Receiver;
 import com.google.gwt.requestfactory.shared.Request;
 import com.google.gwt.requestfactory.shared.RequestFactory;
@@ -35,8 +36,6 @@ import com.google.gwt.view.client.Range;
  * TODO When filters are introduced, create a filter interface that defines a name
  * and value method. The paginate method can then just iterate through all entities
  * in the toolbar with this interface.
- * 
- * @author bseefeld
  *
  * @param <T> The type in the CellTable.
  */
@@ -59,23 +58,26 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 	protected AbstractPager pager;
 	
 	protected AsyncDataProvider<T> dataProvider;
+	
+	protected Class<T> entityClass;
 
 	protected static final int PAGE_SIZE = 25;
 	
 	private static final Logger logger = Logger.getLogger(PagingCellTablePanel.class.getName());
 	
-	public PagingCellTablePanel() {
-		this(new SimplePager());
+	public PagingCellTablePanel(Class<T> entityClass) {
+		this(entityClass, new SimplePager());
 		
 		SimplePager p = (SimplePager) pager;
 		p.setPageSize(PAGE_SIZE);
 	}
 	
-	public PagingCellTablePanel(AbstractPager pager) {
+	public PagingCellTablePanel(Class<T> entityClass, AbstractPager pager) {
 		this.pager = pager;
+		this.entityClass = entityClass;
 	}
 	
-	public void initialize(CellTable<T> table, RequestFactory requestFactory, EventBus eventBus) {
+	public void initialize(final CellTable<T> table, RequestFactory requestFactory, EventBus eventBus) {
 		this.table = table;
 		
 		requestFactory.initialize(eventBus);
@@ -83,15 +85,22 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 		Binder binder = GWT.create(Binder.class);
 		initWidget(binder.createAndBindUi(this));
 		body.setWidget(table);
-		
-		// TODO body should automatically be height of window - footer/header size
-		//body.setSize("600px", "400px");
+	
 		footer.setWidget(pager);
 		
 		toolbar.setVisible(false);
 		
 		initializePagination(pager);
 		initializeSorting();
+		
+		EntityProxyChange.registerForProxyType(eventBus, entityClass, new EntityProxyChange.Handler<T>() {
+
+			@Override
+			public void onProxyChange(EntityProxyChange<T> event) {
+				Range r = table.getVisibleRange();
+				paginate(r.getStart(), r.getLength(), null, true);
+			}
+		});
 	}
 	
 	/**
@@ -187,7 +196,7 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 			public void onColumnSort(ColumnSortEvent event) {
 				Range r = table.getVisibleRange();
 				//paginate(r.getStart(), r.getLength(), "todo", event.isSortAscending());
-				logger.severe("I would like to paginate, but it isnt wired up yet.");
+				logger.severe("I would like to sort, but it isnt wired up yet.");
 			}
 		};
 	    table.addColumnSortHandler(columnSortHandler);

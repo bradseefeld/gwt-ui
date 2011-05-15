@@ -105,7 +105,7 @@ public class TestApp implements EntryPoint {
 				.create(EmployeeRequestFactory.class);
 		EventBus eventBus = new SimpleEventBus();
 
-		PagingCellTablePanel<EmployeeProxy> panel = new PagingCellTablePanel<EmployeeProxy>() {
+		PagingCellTablePanel<EmployeeProxy> panel = new PagingCellTablePanel<EmployeeProxy>(EmployeeProxy.class) {
 
 			@Override
 			public void paginate(int offset, int limit, String sortColumn,
