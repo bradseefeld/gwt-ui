@@ -101,6 +101,6 @@
 } 
 
 @sprite .cellTableLoading { 
-  gwt-image: 'cellTableLoading'; 
+  gwt-image: 'largeLoading'; 
   margin: 30px; 
 }

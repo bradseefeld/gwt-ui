@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import com.bradley.gwt.user.client.i18n.UIConstants;
+import com.bradley.gwt.user.client.resource.UIClientBundle;
 import com.bradley.gwt.user.client.ui.ToolBar;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
@@ -23,6 +25,7 @@ import com.google.gwt.user.cellview.client.ColumnSortEvent;
 import com.google.gwt.user.cellview.client.ColumnSortEvent.AsyncHandler;
 import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.AsyncDataProvider;
@@ -54,6 +57,8 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 	protected SimplePanel footer;
 	
 	protected CellTable<T> table;
+	
+	protected Label noDataAvailable;
 	
 	protected AbstractPager pager;
 	
@@ -101,6 +106,9 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 				paginate(r.getStart(), r.getLength(), null, true);
 			}
 		});
+		
+		noDataAvailable = new Label(UIConstants.INSTANCE.noDataAvailable());
+		noDataAvailable.addStyleName(UIClientBundle.INSTANCE.getUICssResource().noData());
 	}
 	
 	/**
@@ -134,7 +142,18 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 
 			@Override
 			public void onSuccess(List<T> data) {
-				dataProvider.updateRowData(offset, data);
+				if (data.isEmpty()) {
+					body.clear();
+					body.add(noDataAvailable);
+					footer.setVisible(false);
+				} else {
+					body.clear();
+					body.add(table);
+					if (!footer.isVisible()) {
+						footer.setVisible(true);
+					}
+					dataProvider.updateRowData(offset, data);
+				}
 			}
 		});
 	}

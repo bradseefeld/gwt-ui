@@ -12,4 +12,7 @@ public interface UIConstants extends Constants {
 	
 	@DefaultStringValue("Cancel")
 	String cancel();
+	
+	@DefaultStringValue("No data available")
+	String noDataAvailable();
 }

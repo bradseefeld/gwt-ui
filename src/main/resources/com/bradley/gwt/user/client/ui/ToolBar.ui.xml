@@ -4,7 +4,6 @@
 	<ui:style>
 		.toolbar {
 			border-bottom: 1px solid #ccc;
-			background:#f0f4f5;
 			padding: 2px;
 			padding-bottom: 4px;
 			min-height: 27px;

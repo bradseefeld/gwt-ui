@@ -107,8 +107,14 @@
 .label-field {
 	margin-bottom: 5px;
 }
+.label-field input {
+	width: 230px;
+}
 .label-field div {
 	display: inline-block;
+}
+.label {
+	text-align: right;
 }
 .label-field.required .label {
 	font-weight: bold;
@@ -116,6 +122,12 @@
 .label-field .empty {
 	color: #999;
 	font-style: italic;
+}
+/* When there is no data available in a grid. */
+.no-data {
+	font-size: 22px;
+	font-style: italic;
+	color: #999;
 }
 
 /**
@@ -137,4 +149,5 @@
 }
 .ui-dialog .ui-dialog-content {
 	padding-top: 2px;
+}
 }

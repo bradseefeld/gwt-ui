@@ -27,4 +27,7 @@ public interface UICssResource extends CssResource {
 	
 	@ClassName("notification")
 	String notification();
+	
+	@ClassName("no-data")
+	String noData();
 }

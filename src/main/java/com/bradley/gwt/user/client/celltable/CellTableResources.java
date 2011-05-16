@@ -1,5 +1,6 @@
 package com.bradley.gwt.user.client.celltable;
 
+import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.cellview.client.CellTable;
 
 public interface CellTableResources extends CellTable.Resources {
@@ -8,4 +9,7 @@ public interface CellTableResources extends CellTable.Resources {
 
 	@Source({ "cell-table.css" })
 	CellTableStyle cellTableStyle();
+	
+	@Source("large-loading.gif")
+	ImageResource largeLoading();
 }
