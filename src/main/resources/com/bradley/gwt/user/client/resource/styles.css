@@ -107,14 +107,18 @@
 .label-field {
 	margin-bottom: 5px;
 }
-.label-field input {
+.label-field input, .label-field textarea {
 	width: 230px;
+}
+.label-field textarea {
+	height: 100px;
 }
 .label-field div {
 	display: inline-block;
 }
 .label {
 	text-align: right;
+	vertical-align: top;
 }
 .label-field.required .label {
 	font-weight: bold;
