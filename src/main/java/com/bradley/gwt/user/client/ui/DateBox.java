@@ -62,6 +62,11 @@ public class DateBox extends Composite implements HasValue<Date> {
 
 	@Override
 	public void setValue(Date value) {
+		if (value == null) {
+			textbox.setValue("");
+			return;
+		}
+		
 		textbox.setValue(format.format(value));
 	}
 
@@ -88,7 +93,7 @@ public class DateBox extends Composite implements HasValue<Date> {
 	 * @return The JS style date format
 	 */
 	protected String getJsPattern() {
-		String pattern = format.getPattern().toLowerCase();
+		String pattern = format.getPattern();
 		return pattern.replaceAll("yyyy", "yy");
 	}
 	

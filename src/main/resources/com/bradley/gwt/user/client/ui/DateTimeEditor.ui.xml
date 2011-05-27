@@ -1,0 +1,18 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'
+	xmlns:e='urn:import:com.google.gwt.editor.ui.client'
+	xmlns:a='urn:import:com.google.gwt.editor.ui.client.adapters'
+	xmlns:b='urn:import:com.bradley.gwt.user.client.ui'>
+
+	<g:HTMLPanel>
+		<div class="label-field required">
+			<g:Label text="Date" ui:field="dateLabel" addStyleNames="label auto" />
+			<b:DateBox ui:field="date" addStyleNames="field" />
+		</div>
+		
+		<div class="label-field">
+			<g:Label text="Time" ui:field="timeLabel" addStyleNames="label auto" />
+			<b:TimeBox ui:field="time" addStyleNames="field" />
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder>
