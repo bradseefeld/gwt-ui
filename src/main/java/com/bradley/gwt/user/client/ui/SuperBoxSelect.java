@@ -4,20 +4,55 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import com.google.gwt.user.client.Element;
+import com.bradley.gwt.user.client.i18n.UIConstants;
+import com.bradley.gwt.user.client.resource.SuperBoxSelectResources;
+import com.bradley.gwt.user.client.ui.HtmlList.ListType;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.RepeatingCommand;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.dom.client.LIElement;
+import com.google.gwt.editor.client.LeafValueEditor;
+import com.google.gwt.event.dom.client.BlurEvent;
+import com.google.gwt.event.dom.client.BlurHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.FocusEvent;
+import com.google.gwt.event.dom.client.FocusHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Event;
+import com.google.gwt.user.client.EventListener;
+import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.TextBox;
 
-public class SuperBoxSelect<T> extends ComboBox<T> {
+/**
+ * A TextBox that can have multiple values and has auto-complete behavior. Auto-complete
+ * can be wired up via:
+ * 
+ * <code>
+ * 		select.getInput().addKeyUpHandler(new KeyUpHandler() {
+ *
+ *			@Override
+ *			public void onKeyUp(KeyUpEvent event) {
+ *				select.setAutoCompleteSelections(list);
+ *			}
+ *		});
+ * </code>
+ *
+ * @param <T>
+ */
+public class SuperBoxSelect<T> extends FlowPanel implements LeafValueEditor<Set<T>> {
 
-	/**
-	 * Fired when the user has added a selection.
-	 */
-	//public static final EventType AddSelection = new EventType();
-
-	/**
-	 * Fired when the user has removed a selection.
-	 */
-	//public static final EventType RemoveSelection = new EventType();
-
+	public interface ValueAddedHandler<T> {
+		void onValueAdded(T value);
+	}
+	
 	/**
 	 * The models that have been currently selected.
 	 */
@@ -26,63 +61,132 @@ public class SuperBoxSelect<T> extends ComboBox<T> {
 	/**
 	 * An unordered list.
 	 */
-	protected HtmlList list;
-
-	/**
-	 * Template used to display selections. Tells us how to display
-	 * the models that have been selected.
-	 */
-	//protected XTemplate selectionTemplate;
+	protected HtmlList selectionList;
+	
+	protected HtmlList autoCompleteList;
 
 	/**
 	 * The GWT element representing the input field.
 	 */
-	private Element input;
+	private TextBox input;
 
 	/**
 	 * We manually manage when to display the empty text.
 	 */
-	protected String usersEmptyText;
+	protected String emptyText = UIConstants.INSTANCE.beginTyping();
+	
+	/** Responsible for rendering selections. */
+	protected Renderer<T> renderer;
+	
+	protected Set<ValueAddedHandler<T>> addHandlers = new HashSet<ValueAddedHandler<T>>();
+	
+	protected SuperBoxSelectResources resources = GWT.create(SuperBoxSelectResources.class);
 
 	public SuperBoxSelect() {
 		super();
-/*
-		addListener(Events.Select, new Listener<FieldEvent>() {
+		
+		// Add a list for containing our selections and input field.
+		selectionList = new HtmlList(ListType.UNORDERED);
+		selectionList.addStyleName(resources.getSuperBoxSelectCss().superBoxSelect());
+		add(selectionList);
+		
+		autoCompleteList = new HtmlList(ListType.UNORDERED);
+		autoCompleteList.addStyleName(resources.getSuperBoxSelectCss().autoComplete());
+		autoCompleteList.addStyleName(resources.getSuperBoxSelectCss().hidden());
+		add(autoCompleteList);
+		
+		input = new TextBox();
+		initInput();
+		
+		resources.getSuperBoxSelectCss().ensureInjected();
+			
+		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 
 			@Override
-			public void handleEvent(FieldEvent be) {
-				addSelection(getValue());
-				setValue(null);
+			public void execute() {
+				buildList();
+				input.setFocus(true);
 			}
-		});*/
-/*
-		addListener(Events.Render, new Listener<ComponentEvent>() {
-
-			@Override
-			public void handleEvent(ComponentEvent be) {
-				onAfterRender();
-			}
-		});*/
+		});
+	}
+	
+	public void addValueAddedHandler(ValueAddedHandler<T> h) {
+		addHandlers.add(h);
+	}
+	
+	public TextBox getInput() {
+		return input;
 	}
 
 	public void clear() {
-		super.clear();
-
 		selections.removeAll(selections);
 		buildList();
 	}
 
 	public void setEmptyText(String emptyText) {
-		//super.setEmptyText(emptyText);
-		this.usersEmptyText = emptyText;
+		if (this.emptyText.equals(input.getValue())) {
+			input.setValue(emptyText);
+		}
+		this.emptyText = emptyText;
 	}
 
 	public void addSelection(T selection) {
-		boolean added = selections.add(selection);
 
-		if (added) {
+		if (selections.add(selection)) {
 			buildList();
-			//fireEvent(AddSelection, new AppEvent(AddSelection, selection));
+			
+			for (ValueAddedHandler<T> h : addHandlers) {
+				h.onValueAdded(selection);
+			}
+		}
+	}
+	
+	public void setAutoCompleteSelections(Set<T> selections) {
+		autoCompleteList.empty();
+		
+		if (selections == null) {
+			autoCompleteList.addStyleName(resources.getSuperBoxSelectCss().hidden());
+			return;
+		}
+		
+		autoCompleteList.removeStyleName(resources.getSuperBoxSelectCss().hidden());
+		
+		for (final T selection : selections) {
+			String display = selection.toString();
+			if (renderer != null) {
+				display = renderer.render(selection);
+			}
+			
+			final Anchor a = new Anchor();
+			a.setText(display);
+			RootPanel.get().add(a);
+			autoCompleteList.addItem(a.getElement());
+			
+			a.addClickHandler(new ClickHandler() {
+
+				@Override
+				public void onClick(ClickEvent event) {
+					addSelection(selection);
+					setAutoCompleteSelections(new HashSet<T>());
+					input.setValue("");
+				}
+			});
+			
+			a.addMouseOverHandler(new MouseOverHandler() {
+
+				@Override
+				public void onMouseOver(MouseOverEvent event) {
+					a.addStyleName(resources.getSuperBoxSelectCss().autoCompleteItemHover());
+				}
+			});
+			
+			a.addMouseOutHandler(new MouseOutHandler() {
+
+				@Override
+				public void onMouseOut(MouseOutEvent event) {
+					a.removeStyleName(resources.getSuperBoxSelectCss().autoCompleteItemHover());
+				}
+			});
 		}
 	}
 
@@ -91,88 +195,17 @@ public class SuperBoxSelect<T> extends ComboBox<T> {
 
 		if (removed) {
 			buildList();
-			//fireEvent(RemoveSelection, new AppEvent(RemoveSelection, selection));
 		}
 	}
-
-	public Set<T> getSelections() {
-		return selections;
-	}
-
+	
 	/**
-	 * Set the template used to display selections in the superbox. This
-	 * is different than the ComboBox template.
+	 * Set the renderer used to display selections in the super-box.
 	 * 
-	 * @param template
+	 * @param renderer The entity responsible for rendering selections.
 	 */
-	public void setSelectionTemplate(String template) {
-		//setSelectionTemplate(XTemplate.create(template));
+	public void setRenderer(Renderer<T> renderer) {
+		this.renderer = renderer;
 	}
-
-	/*public void setSelectionTemplate(XTemplate template) {
-		//assertPreRender();
-		//selectionTemplate = template;
-	}*/
-
-	/**
-	 * Modify the parent's DOM a little after rendering. We
-	 * alter the structure of the ComboBox a little to suit
-	 * or needs. This method automatically called after the
-	 * widget has rendered.
-	 */
-	/*protected void onAfterRender() {
-
-		// Add some styling to our parent div.
-		addStyleName("schedgy-superboxselect");
-		addStyleName("schedgy-superboxselect-display-btns");
-		addStyleName("x-form-text"); // Highlights the top of the field.
-
-		// Get the input field. It already exists in the DOM.
-		input = getElement().getFirstChildElement();
-		getElement().removeChild(input);
-		input.addClassName("schedgy-superboxselect-input-field");
-		input.setAttribute("style", "width:" + getElement().getClientWidth() + "px;");
-
-		// Add a list for containing our selections and input field.
-		list = new HtmlList(ListType.UNORDERED);
-
-		// Add our list to the DOM.
-		getElement().appendChild(list.getElement());
-
-		Element expand = getElement().getFirstChildElement();
-		getElement().removeChild(expand);
-
-		Element buttons = Document.get().createDivElement();
-		buttons.addClassName("schedgy-superboxselect-btns");
-
-		expand = Document.get().createDivElement();
-		expand.addClassName("schedgy-superboxselect-btn-expand");
-
-		Event.sinkEvents(expand, Event.ONCLICK);
-		Event.setEventListener(expand, new EventListener() {
-
-			@Override
-			public void onBrowserEvent(Event event) {
-				if (event.getTypeInt() != Event.ONCLICK) {
-					return;
-				}
-
-				if (isExpanded()) {
-					collapse();
-				} else {
-					expand(); 
-				}
-			}
-		});
-		buttons.appendChild(expand);
-		getElement().appendChild(buttons);
-
-		// Setup the selection template.
-		if (selectionTemplate == null) {
-			selectionTemplate = XTemplate.create("{" + getDisplayField() + "}");
-		}
-		buildList();
-	}*/
 
 	/**
 	 * Add the necassary list items to the field. These are the existing
@@ -180,23 +213,26 @@ public class SuperBoxSelect<T> extends ComboBox<T> {
 	 * when a value is added or removed.
 	 */
 	protected void buildList() {
-		if (list == null) {
+		if (selectionList == null) {
 			return;
 		}
 
-		list.empty();
+		selectionList.empty();
 
 		Iterator<T> iter = selections.iterator();
 
-		/*while (iter.hasNext()) {
+		while (iter.hasNext()) {
 			final T model = iter.next();
-
-			final LIElement li = list.addItem((String) selectionTemplate.applyTemplate(Util.getJsObject(model)));
-			li.addClassName("schedgy-superboxselect-item");
+			
+			String display = model.toString();
+			if (renderer != null) {
+				display = renderer.render(model);
+			}
+			final LIElement li = selectionList.addItem(display);
+			li.addClassName(resources.getSuperBoxSelectCss().selection());
 
 			Anchor a = new Anchor();
-			a.addStyleName("schedgy-superboxselect-item-close");
-			a.sinkEvents(Event.ONCLICK);
+			a.addStyleName(resources.getSuperBoxSelectCss().remove());
 			li.appendChild(a.getElement());
 
 			// Setup click handler.
@@ -226,13 +262,64 @@ public class SuperBoxSelect<T> extends ComboBox<T> {
 			});
 		}
 
-		LIElement li = list.addItem(input);
-		li.addClassName("schedgy-superboxselect-input");
+		RootPanel.get().add(input); // Add to DOM so that listeners are bound.
+		selectionList.addItem(input.getElement());
+	}
 
-		if (selections.size() > 0) {
-			super.setEmptyText(null);
-		} else {
-			super.setEmptyText(usersEmptyText);
-		}*/
+	@Override
+	public void setValue(Set<T> values) {
+		clear();
+		if (values == null) {
+			return;
+		}
+		
+		for (T value : values) {
+			addSelection(value);
+		}
+	}
+
+	@Override
+	public Set<T> getValue() {
+		return selections;
+	}
+	
+	protected void initInput() {
+		input.setValue(emptyText);
+		input.addStyleName(resources.getSuperBoxSelectCss().empty());
+		
+		// Clear empty text on focus.
+		input.addFocusHandler(new FocusHandler() {
+
+			@Override
+			public void onFocus(FocusEvent event) {
+				input.removeStyleName(resources.getSuperBoxSelectCss().empty());
+				if (emptyText.equals(input.getValue())) {
+					input.setValue("");
+				}
+			}
+		});
+		
+		// Add empty text on unfocus
+		input.addBlurHandler(new BlurHandler() {
+
+			@Override
+			public void onBlur(BlurEvent event) {
+				if (input.getValue() == null || input.getValue().isEmpty()) {
+					input.addStyleName(resources.getSuperBoxSelectCss().empty());
+					input.setValue(emptyText);
+				}
+				
+				// A little bit of a hack!
+				// TODO: Find a better solution for detecting blur and hiding auto-complete
+				Scheduler.get().scheduleFixedDelay(new RepeatingCommand() {
+
+					@Override
+					public boolean execute() {
+						setAutoCompleteSelections(null);
+						return false;
+					}
+				}, 1000);
+			}
+		});
 	}
 }

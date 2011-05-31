@@ -15,4 +15,7 @@ public interface UIConstants extends Constants {
 	
 	@DefaultStringValue("No data available")
 	String noDataAvailable();
+	
+	@DefaultStringValue("Beging typing...")
+	String beginTyping();
 }

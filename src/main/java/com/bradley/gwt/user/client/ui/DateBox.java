@@ -53,7 +53,9 @@ public class DateBox extends Composite implements HasValue<Date> {
 		}
 		
 		try {
-			return format.parse(value);
+			Date d = format.parse(value);
+			LOG.finer("Outgoing date is " + value);
+			return d;
 		} catch (Exception e) {
 			LOG.warning("Users date was invalid: " + value);
 			return null;

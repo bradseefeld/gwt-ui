@@ -1,0 +1,181 @@
+@charset "utf-8";
+
+.superboxselect {
+	position: relative;
+	height: auto !important;
+	margin: 0px;
+	overflow: hidden;
+	padding: 8px;
+	display: block;
+	outline: none !important;
+	background-color: #fff;
+	background-repeat: repeat-x;
+	border-radius: 6px;
+	o-border-radius: 6px;
+	khtml-border-radius: 6px;
+}
+
+.superboxselect input {
+	border: none;
+	background-color: transparent;
+	outline: none;
+}
+
+.superboxselect ul, ul.autoComplete {
+	overflow: hidden;
+	cursor: text;
+	-webkit-padding-start: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+.superboxselect li {
+	float: left;
+	margin: 1px 1px 2px 1px;
+	padding: 0;
+	line-height: 18px;
+	list-style: none;
+}
+.selection {
+	position: relative;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	o-border-radius: 6px;
+	khtml-border-radius: 6px;
+	border: 1px solid #CAD8F3;
+	background-color: #DEE7F8;
+	padding: 1px 15px 1px 5px !important;
+}
+@sprite .remove {
+	gwt-image: "close";
+	background-repeat: no-repeat;
+	background-position: left 0px;
+	border: none;
+	cursor: default;
+	font-size: 1px;
+	height: 16px;
+	padding: 0;
+	position: absolute;
+	right: 0px;
+	top: 2px;
+	width: 13px;
+	display: block;
+	cursor: pointer;
+}
+.remove:hover, .remove:active {
+	background-position: left -12px;
+}
+.hidden {
+	display: none;
+}
+ul.autoComplete {
+	margin-top: 2px;
+	background-color: white;
+	border: 1px solid #19B3CD;
+}
+.autoComplete li {
+	display: block;
+	float: none;
+}
+.autoComplete li a {
+	cursor: pointer;
+	color: black;
+	width: 100%;
+	display: block;
+	padding: 2px;
+	padding-left: 6px;
+}
+.autoComplete li a:hover, .autoCompleteItemHover {	
+	background-color: #AFDE41;
+}
+.empty {
+	font-style: italic;
+	color: #999;
+}
+/*
+
+.schedgy-superboxselect-btns {
+	position: absolute;
+	right: 1px;
+	top: 0;
+	overflow: hidden;
+	padding: 2px;
+}
+
+.schedgy-superboxselect-btns div {
+	float: left;
+	width: 16px;
+	height: 16px;
+	margin-top: 4px;
+}
+
+.schedgy-superboxselect-btn-clear {
+	background: url('../images/clear.png') no-repeat scroll left 0px;
+}
+
+.schedgy-superboxselect-btn-expand {
+	background: url('../images/expand.png') no-repeat scroll left 0px;
+}
+
+.schedgy-superboxselect-btn-over {
+	background-position: left -16px
+}
+
+.schedgy-superboxselect-btn-hide {
+	display: none;
+}
+
+
+
+.schedgy-superboxselect-stacked li {
+	float: none !important;
+}
+
+.schedgy-superboxselect-input input {
+	border: none;
+	outline: none;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+body.ext-ie .x-superboxselect-input input {
+	background: none;
+	border: none;
+	margin-top: 3px;
+}
+
+
+
+body.ext-ie7 .x-superboxselect-item {
+	margin: 2px 1px 2px 1px;
+	line-height: 1.2em;
+	padding: 2px 17px 4px 5px !important;
+}
+
+body.ext-ie6 .x-superboxselect-item {
+	margin: 2px 1px 2px 1px;
+	line-height: 1.2em;
+	padding: 2px 19px 4px 5px !important;
+}
+
+.schedgy-superboxselect-item-hover {
+	background: #BBCEF1;
+	border: 1px solid #6D95E0;
+}
+
+.schedgy-superboxselect-item-focus {
+	border-color: #598BEC;
+	background: #598BEC;
+	color: #fff;
+}
+
+
+
+.schedgy-superboxselect-item-focus .x-superboxselect-item-close {
+	background-position: left -24px
+}
+
+.schedgy-item-disabled .x-superboxselect-item-close {
+	background-position: left -36px
+}*/

@@ -54,7 +54,8 @@ public class TimeBox extends Composite implements HasValue<Date> {
 		}
 		
 		try {
-			return format.parse(value);
+			Date d = format.parse(value);
+			return d;
 		} catch (Exception e) {
 			LOG.warning("Unrecognized time: " + value);
 			return null;

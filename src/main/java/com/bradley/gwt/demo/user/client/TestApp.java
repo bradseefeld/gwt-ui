@@ -1,6 +1,8 @@
 package com.bradley.gwt.demo.user.client;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import com.bradley.gwt.demo.user.client.entity.EmployeeProxy;
 import com.bradley.gwt.demo.user.client.request.EmployeeRequest;
@@ -13,12 +15,18 @@ import com.bradley.gwt.user.client.ui.ComboBox;
 import com.bradley.gwt.user.client.ui.Dialog;
 import com.bradley.gwt.user.client.ui.EditorPanel;
 import com.bradley.gwt.user.client.ui.Notifier;
+import com.bradley.gwt.user.client.ui.Renderer;
 import com.bradley.gwt.user.client.ui.SaveButton;
+import com.bradley.gwt.user.client.ui.SuperBoxSelect;
+import com.bradley.gwt.user.client.ui.grid.Grid;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.KeyUpEvent;
+import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.cellview.client.CellTable;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -32,11 +40,52 @@ public class TestApp implements EntryPoint {
 		// demoCellTableDialog();
 		// demoNotifications();
 		// demoButtons();
-		demoDualListBox();
+		//demoDualListBox();
 		//demoEditorPanel();
-		demoMasking();
-		demoDialog();
-		demoComboBox();
+		//demoMasking();
+		//demoDialog();
+		//demoComboBox();
+		demoSuperBoxSelect();
+		demoGrid();
+	}
+	
+	protected void demoGrid() {
+		Grid grid = new Grid(100, 3);
+		RootPanel.get().add(grid);
+	}
+	
+	protected void demoSuperBoxSelect() {
+		final SuperBoxSelect<EmployeeProxy> select = new SuperBoxSelect<EmployeeProxy>();
+		select.setRenderer(new Renderer<EmployeeProxy>() {
+
+			@Override
+			public String render(EmployeeProxy object) {
+				return object.getFirstName() + " " + object.getLastName();
+			}
+		});
+		RootPanel.get().add(select);
+		
+		EmployeeRequestFactory factory = GWT.create(EmployeeRequestFactory.class);
+		EmployeeProxy employee = factory.request().create(EmployeeProxy.class);
+		employee.setFirstName("Brad");
+		employee.setLastName("Test");
+		select.addSelection(employee);
+		
+		final Set<EmployeeProxy> list = new HashSet<EmployeeProxy>();
+		for (int i = 0; i < 5; i++) {
+			employee = factory.request().create(EmployeeProxy.class);
+			employee.setFirstName("first" + i);
+			employee.setLastName("last" + i);
+			list.add(employee);
+		}
+		
+		select.getInput().addKeyUpHandler(new KeyUpHandler() {
+
+			@Override
+			public void onKeyUp(KeyUpEvent event) {
+				select.setAutoCompleteSelections(list);
+			}
+		});
 	}
 	
 	protected void demoComboBox() {

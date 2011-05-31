@@ -1,6 +1,7 @@
 package com.bradley.gwt.user.client.ui;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.LeafValueEditor;
@@ -29,6 +30,8 @@ public class DateTimeEditor extends Composite implements LeafValueEditor<Date> {
 	
 	protected DateTimeFormat timeFormat;
 	
+	private static final Logger LOG = Logger.getLogger(DateTimeEditor.class.getName());
+	
 	public interface Binder extends UiBinder<Widget, DateTimeEditor> {
 	}
 	
@@ -54,7 +57,8 @@ public class DateTimeEditor extends Composite implements LeafValueEditor<Date> {
 		}
 		
 		long timeMillis = time.getTime() % (24 * 60 * 60 * 1000);
-		return new Date(day.getTime() + timeMillis);
+		Date d = new Date(day.getTime() + timeMillis);
+		return d;
 	}
 	
 	public DateBox getDateBox() {

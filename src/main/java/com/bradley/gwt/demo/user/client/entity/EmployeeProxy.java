@@ -9,4 +9,6 @@ import com.google.gwt.requestfactory.shared.ProxyFor;
 public interface EmployeeProxy extends EntityProxy {
 	String getFirstName();
 	String getLastName();
+	void setFirstName(String name);
+	void setLastName(String name);
 }
