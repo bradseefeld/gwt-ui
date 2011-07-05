@@ -53,6 +53,10 @@ public class SuperBoxSelect<T> extends FlowPanel implements LeafValueEditor<Set<
 		void onValueAdded(T value);
 	}
 	
+	public interface ValueRemovedHandler<T> {
+		void onValueRemoved(T value);
+	}
+	
 	/**
 	 * The models that have been currently selected.
 	 */
@@ -78,8 +82,17 @@ public class SuperBoxSelect<T> extends FlowPanel implements LeafValueEditor<Set<
 	/** Responsible for rendering selections. */
 	protected Renderer<T> renderer;
 	
+	/** Handlers that are called when a value is added. */
 	protected Set<ValueAddedHandler<T>> addHandlers = new HashSet<ValueAddedHandler<T>>();
 	
+	/** Handlers that are called when a value is removed. */
+	protected Set<ValueRemovedHandler<T>> removeHandlers = new HashSet<ValueRemovedHandler<T>>();
+	
+	/**
+	 * Client side resources. 
+	 * 
+	 * TODO: This should optionally be injected.
+	 */
 	protected SuperBoxSelectResources resources = GWT.create(SuperBoxSelectResources.class);
 
 	public SuperBoxSelect() {
@@ -112,6 +125,10 @@ public class SuperBoxSelect<T> extends FlowPanel implements LeafValueEditor<Set<
 	
 	public void addValueAddedHandler(ValueAddedHandler<T> h) {
 		addHandlers.add(h);
+	}
+	
+	public void addValueRemovedHandler(ValueRemovedHandler<T> h) {
+		removeHandlers.add(h);
 	}
 	
 	public TextBox getInput() {
@@ -195,6 +212,10 @@ public class SuperBoxSelect<T> extends FlowPanel implements LeafValueEditor<Set<
 
 		if (removed) {
 			buildList();
+		}
+		
+		for (ValueRemovedHandler<T> h : removeHandlers) {
+			h.onValueRemoved(selection);
 		}
 	}
 	

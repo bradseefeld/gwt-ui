@@ -7,7 +7,11 @@ import com.google.gwt.core.client.GWT;
 public class SaveButton extends Button {
 	
 	public SaveButton() {
-		super(UIConstants.INSTANCE.save(),
+		this(UIConstants.INSTANCE.save());
+	}
+	
+	public SaveButton(String label) {
+		super(label,
 				(SaveButtonResources) GWT.create(SaveButtonResources.class));
 	}
 }

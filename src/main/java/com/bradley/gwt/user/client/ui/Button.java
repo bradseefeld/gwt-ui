@@ -32,4 +32,8 @@ public class Button extends PushButton {
 	public Button(String label) {
 		this(label, (ButtonResources) GWT.create(ButtonResources.class));
 	}
+	
+	public Button() {
+		this("");
+	}
 }
