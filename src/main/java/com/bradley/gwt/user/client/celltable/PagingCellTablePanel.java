@@ -17,6 +17,7 @@ import com.google.gwt.requestfactory.shared.EntityProxyChange;
 import com.google.gwt.requestfactory.shared.Receiver;
 import com.google.gwt.requestfactory.shared.Request;
 import com.google.gwt.requestfactory.shared.RequestFactory;
+import com.google.gwt.requestfactory.shared.WriteOperation;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.AbstractPager;
@@ -102,8 +103,12 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 
 			@Override
 			public void onProxyChange(EntityProxyChange<T> event) {
-				Range r = table.getVisibleRange();
-				paginate(r.getStart(), r.getLength(), null, true);
+				
+				if (event.getWriteOperation() == WriteOperation.PERSIST || event.getWriteOperation() == WriteOperation.DELETE) {
+					logger.fine("Change detected for " + entityClass.getName() + ". Reloading grid.");
+					Range r = table.getVisibleRange();
+					paginate(r.getStart(), r.getLength(), null, true);
+				}
 			}
 		});
 		
