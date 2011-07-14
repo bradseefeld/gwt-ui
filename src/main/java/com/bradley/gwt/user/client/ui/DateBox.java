@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -19,7 +20,7 @@ import com.google.gwt.user.client.ui.TextBox;
  * A form field that has date values. This widget is enhanced with jquery date
  * picker. It also supports i18n through setting a DateTimeFormat.
  */
-public class DateBox extends Composite implements HasValue<Date> {
+public class DateBox extends Composite implements HasValue<Date>, LeafValueEditor<Date> {
 
 	protected DateTimeFormat format = DateTimeFormat.getFormat(PredefinedFormat.DATE_SHORT);
 	
@@ -48,6 +49,7 @@ public class DateBox extends Composite implements HasValue<Date> {
 	@Override
 	public Date getValue() {
 		String value = textbox.getValue();
+		
 		if (value == null || value.isEmpty()) {
 			return null;
 		}
@@ -96,6 +98,7 @@ public class DateBox extends Composite implements HasValue<Date> {
 	 */
 	protected String getJsPattern() {
 		String pattern = format.getPattern();
+		pattern = pattern.replaceAll("M", "m");
 		return pattern.replaceAll("yyyy", "yy");
 	}
 	

@@ -104,10 +104,9 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 			@Override
 			public void onProxyChange(EntityProxyChange<T> event) {
 				
-				if (event.getWriteOperation() == WriteOperation.PERSIST || event.getWriteOperation() == WriteOperation.DELETE) {
-					logger.fine("Change detected for " + entityClass.getName() + ". Reloading grid.");
-					Range r = table.getVisibleRange();
-					paginate(r.getStart(), r.getLength(), null, true);
+				if (event.getWriteOperation() == WriteOperation.PERSIST) {
+					logger.fine("Change (" + event.getWriteOperation().toString() + ") detected for " + entityClass.getName() + ". Reloading grid.");
+					reload();
 				}
 			}
 		});
@@ -132,6 +131,11 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 	 */
 	public ToolBar getToolBar() {
 		return toolbar;
+	}
+	
+	public void reload() {
+		Range r = table.getVisibleRange();
+		paginate(r.getStart(), r.getLength(), null, true);
 	}
 	
 	public abstract void paginate(final int offset, int limit, String sortColumn, boolean isSortAscending);
@@ -218,7 +222,7 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 			
 			@Override
 			public void onColumnSort(ColumnSortEvent event) {
-				Range r = table.getVisibleRange();
+				//Range r = table.getVisibleRange();
 				//paginate(r.getStart(), r.getLength(), "todo", event.isSortAscending());
 				logger.severe("I would like to sort, but it isnt wired up yet.");
 			}

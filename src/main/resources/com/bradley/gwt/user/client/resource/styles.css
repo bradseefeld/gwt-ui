@@ -107,7 +107,7 @@
 .label-field {
 	margin-bottom: 5px;
 }
-.label-field input, .label-field textarea {
+.label-field input[type=text], .label-field textarea {
 	width: 230px;
 }
 .label-field textarea {
@@ -119,6 +119,7 @@
 .label {
 	text-align: right;
 	vertical-align: top;
+	white-space: nowrap;
 }
 .label-field.required .label {
 	font-weight: bold;
