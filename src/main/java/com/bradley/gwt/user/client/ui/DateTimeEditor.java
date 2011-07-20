@@ -45,7 +45,6 @@ public class DateTimeEditor extends Composite implements LeafValueEditor<Date> {
 	public void setValue(Date value) {
 		date.setValue(value);
 		time.setValue(value);
-		
 	}
 
 	@Override

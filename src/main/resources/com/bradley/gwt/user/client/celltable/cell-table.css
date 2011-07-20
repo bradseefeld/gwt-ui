@@ -2,7 +2,7 @@
 @def selectionBorderWidth 0px; 
 .cellTableWidget { 
 } 
-
+.cellTableLoading{}
 .cellTableFirstColumn { 
 } 
 
@@ -99,9 +99,4 @@
  */ 
 .cellTableKeyboardSelectedCell { 
   border: selectionBorderWidth solid #d7dde8; 
-} 
-
-@sprite .cellTableLoading { 
-  gwt-image: 'largeLoading'; 
-  margin: 30px; 
 }

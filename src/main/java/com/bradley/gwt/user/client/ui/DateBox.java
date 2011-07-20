@@ -6,6 +6,9 @@ import java.util.logging.Logger;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.editor.client.LeafValueEditor;
+import com.google.gwt.event.dom.client.BlurHandler;
+import com.google.gwt.event.dom.client.FocusHandler;
+import com.google.gwt.event.dom.client.HasAllFocusHandlers;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -20,7 +23,7 @@ import com.google.gwt.user.client.ui.TextBox;
  * A form field that has date values. This widget is enhanced with jquery date
  * picker. It also supports i18n through setting a DateTimeFormat.
  */
-public class DateBox extends Composite implements HasValue<Date>, LeafValueEditor<Date> {
+public class DateBox extends Composite implements HasValue<Date>, HasAllFocusHandlers, LeafValueEditor<Date> {
 
 	protected DateTimeFormat format = DateTimeFormat.getFormat(PredefinedFormat.DATE_SHORT);
 	
@@ -71,20 +74,18 @@ public class DateBox extends Composite implements HasValue<Date>, LeafValueEdito
 			return;
 		}
 		
-		textbox.setValue(format.format(value));
+		textbox.setValue(format.format(value), true);
 	}
 
 	@Override
 	public void setValue(Date value, boolean fireEvents) {
-		setValue(value);
-		
-		// TODO: How do we call the handlers?
+		setValue(value);		
 	}
 	
 	@Override
 	public HandlerRegistration addValueChangeHandler(
 			ValueChangeHandler<Date> handler) {
-		return addHandler(handler, ValueChangeEvent.getType());
+		return textbox.addHandler(handler, ValueChangeEvent.getType());
 	}
 	
 	/**
@@ -108,6 +109,15 @@ public class DateBox extends Composite implements HasValue<Date>, LeafValueEdito
 	
 	private static native void setFormat(Element el, String format)/*-{
 		$wnd.$(el).datepicker('option', 'dateFormat', format);
-		$wnd.console.log(format);
 	}-*/;
+
+	@Override
+	public HandlerRegistration addFocusHandler(FocusHandler handler) {
+		return textbox.addFocusHandler(handler);
+	}
+
+	@Override
+	public HandlerRegistration addBlurHandler(BlurHandler handler) {
+		return textbox.addBlurHandler(handler);
+	}
 }

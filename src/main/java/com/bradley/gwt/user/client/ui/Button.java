@@ -24,9 +24,7 @@ public class Button extends PushButton {
 		
 		addStyleName(css.button());
 		
-		css.ensureInjected();
-		
-		// TODO: Add mouse out/in/down/up handler
+		css.ensureInjected();		
 	}
 
 	public Button(String label) {
