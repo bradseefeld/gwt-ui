@@ -47,15 +47,34 @@ public class DateTimeEditor extends Composite implements LeafValueEditor<Date> {
 		time.setValue(value);
 	}
 
+	/**
+	 * Get a Date in the browser local time.
+	 * 
+	 * @return The browser local time specified by user.
+	 */
 	@Override
 	public Date getValue() {
 		Date day = date.getValue();
+		
+		if (day == null) {
+			return null;
+		}
+		
 		Date time = this.time.getValue();
+		
 		if (time == null) {
 			return day;
 		}
+		LOG.finer("Raw time is " + time.getTime());
 		
 		long timeMillis = time.getTime() % (24 * 60 * 60 * 1000);
+		int offsetMillis = new Date().getTimezoneOffset() * 60 * 1000;
+		if (timeMillis < offsetMillis) {
+			// Need to add a day to time to account for day overflow
+			timeMillis += 24 * 60 * 60 * 1000 - offsetMillis;
+		}
+		
+		LOG.finer("Milliseconds into day is " + timeMillis);
 		Date d = new Date(day.getTime() + timeMillis);
 		return d;
 	}
