@@ -59,7 +59,6 @@ public class DateBox extends Composite implements HasValue<Date>, HasAllFocusHan
 		
 		try {
 			Date d = format.parse(value);
-			LOG.finer("Outgoing date is " + value);
 			return d;
 		} catch (Exception e) {
 			LOG.warning("Users date was invalid: " + value);

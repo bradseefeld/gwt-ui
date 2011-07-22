@@ -69,10 +69,15 @@ public class DateTimeEditor extends Composite implements LeafValueEditor<Date> {
 		
 		long timeMillis = time.getTime() % (24 * 60 * 60 * 1000);
 		int offsetMillis = new Date().getTimezoneOffset() * 60 * 1000;
+		int dayMillis = 24 * 60 * 60 * 1000;
 		if (timeMillis < offsetMillis) {
 			// Need to add a day to time to account for day overflow
-			timeMillis += 24 * 60 * 60 * 1000 - offsetMillis;
+			timeMillis += dayMillis;
+		} else if (timeMillis + offsetMillis > dayMillis) {
+			timeMillis -= dayMillis;
 		}
+		
+		timeMillis -= offsetMillis;
 		
 		LOG.finer("Milliseconds into day is " + timeMillis);
 		Date d = new Date(day.getTime() + timeMillis);
