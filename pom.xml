@@ -10,7 +10,7 @@
 	<name>GWT Maven Archetype</name>
 
 	<properties>
-		<gwt.version>2.2.0</gwt.version>
+		<gwt.version>2.3.0</gwt.version>
 		<slf4j.version>1.6.1</slf4j.version>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>

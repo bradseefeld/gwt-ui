@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.bradley.gwt.demo.server.domain.Employee;
-import com.google.gwt.requestfactory.shared.Locator;
+import com.google.web.bindery.requestfactory.shared.Locator;
 
 public class EmployeeLocator extends Locator<Employee, String> {
 

@@ -1,0 +1,16 @@
+@sprite .tooltip {
+    gwt-image: "background";
+    background-color: white;
+    background-repeat: repeat-x;
+    background-position: bottom;
+    padding: 8px;
+    width: auto;
+    height: auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 5px 5px 5px #ccc;
+    -webkit-box-shadow: 5px 5px 5px #ccc;
+    box-shadow: 5px 5px 5px #ccc;
+    display: none;
+}

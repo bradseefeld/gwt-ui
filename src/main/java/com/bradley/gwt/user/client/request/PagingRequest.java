@@ -2,7 +2,7 @@ package com.bradley.gwt.user.client.request;
 
 import java.util.List;
 
-import com.google.gwt.requestfactory.shared.Request;
+import com.google.web.bindery.requestfactory.shared.Request;
 
 public interface PagingRequest<T> {
 

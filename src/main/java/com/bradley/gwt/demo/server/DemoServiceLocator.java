@@ -1,6 +1,7 @@
 package com.bradley.gwt.demo.server;
 
-import com.google.gwt.requestfactory.shared.ServiceLocator;
+import com.google.web.bindery.requestfactory.shared.ServiceLocator;
+
 
 public class DemoServiceLocator implements ServiceLocator {
 

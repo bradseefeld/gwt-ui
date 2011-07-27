@@ -18,6 +18,7 @@ import com.bradley.gwt.user.client.ui.Notifier;
 import com.bradley.gwt.user.client.ui.Renderer;
 import com.bradley.gwt.user.client.ui.SaveButton;
 import com.bradley.gwt.user.client.ui.SuperBoxSelect;
+import com.bradley.gwt.user.client.ui.ToolTip;
 import com.bradley.gwt.user.client.ui.grid.Grid;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -26,7 +27,6 @@ import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.cellview.client.CellTable;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -47,6 +47,13 @@ public class TestApp implements EntryPoint {
 		//demoComboBox();
 		demoSuperBoxSelect();
 		demoGrid();
+		demoTooltip();
+	}
+	
+	protected void demoTooltip() {
+		Label label = new Label("target");
+		RootPanel.get().add(label);
+		new DemoTooltip(label);
 	}
 	
 	protected void demoGrid() {

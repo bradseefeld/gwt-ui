@@ -5,9 +5,9 @@ import java.util.List;
 import com.bradley.gwt.demo.server.DemoServiceLocator;
 import com.bradley.gwt.demo.server.EmployeeLocator;
 import com.bradley.gwt.demo.user.client.entity.EmployeeProxy;
-import com.google.gwt.requestfactory.shared.Request;
-import com.google.gwt.requestfactory.shared.RequestContext;
-import com.google.gwt.requestfactory.shared.Service;
+import com.google.web.bindery.requestfactory.shared.Request;
+import com.google.web.bindery.requestfactory.shared.RequestContext;
+import com.google.web.bindery.requestfactory.shared.Service;
 
 @Service(value=EmployeeLocator.class, locator=DemoServiceLocator.class)
 public interface EmployeeRequest extends RequestContext {
