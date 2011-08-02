@@ -1,0 +1,16 @@
+@sprite .toolbar {
+    gwt-image: "background";
+    background-color: #F0F0F0;
+    height: 28px;
+    background-repeat: repeat-x;
+    background-color: #F0F0F0;
+    background-position: top;
+    border-top: 1px solid white;
+    border-bottom: 1px solid #D0D0D0;    
+    padding: 2px;
+    padding-top: 4px;
+    min-height: 27px;
+    margin: 0px;
+    width: 100%;
+    overflow: visible; /* so that menu buttons can expand */
+}

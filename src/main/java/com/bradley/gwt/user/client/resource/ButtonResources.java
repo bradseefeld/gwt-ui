@@ -5,9 +5,7 @@ import com.google.gwt.resources.client.CssResource;
 
 public interface ButtonResources extends ClientBundle {
 
-	public interface Style extends CssResource {
-		
-		@ClassName("button")
+	public interface Style extends CssResource {		
 		String button();
 	}
 

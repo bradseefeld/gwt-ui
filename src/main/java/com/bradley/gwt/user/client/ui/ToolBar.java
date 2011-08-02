@@ -2,24 +2,27 @@ package com.bradley.gwt.user.client.ui;
 
 import java.util.Iterator;
 
+import com.bradley.gwt.user.client.resource.ToolBarClientBundle;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ToolBar extends Composite implements HasWidgets {
-	
-	interface Binder extends UiBinder<Widget, ToolBar>{};
-	
-	@UiField
+		
 	protected Panel toolbar;
 	
+	private static final ToolBarClientBundle resources = GWT.create(ToolBarClientBundle.class);
+	
 	public ToolBar() {
-		Binder binder = GWT.create(Binder.class);
-		initWidget(binder.createAndBindUi(this));
+		
+		toolbar = new FlowPanel();
+		toolbar.addStyleName(resources.style().toolbar());
+		initWidget(toolbar);
+		
+		resources.style().ensureInjected();
 	}
 	
 	public void add(Widget button) {

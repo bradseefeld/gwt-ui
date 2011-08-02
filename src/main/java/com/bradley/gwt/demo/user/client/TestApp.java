@@ -10,15 +10,17 @@ import com.bradley.gwt.demo.user.client.request.EmployeeRequestFactory;
 import com.bradley.gwt.user.client.celltable.CellTableResources;
 import com.bradley.gwt.user.client.celltable.PagingCellTablePanel;
 import com.bradley.gwt.user.client.celltable.TextColumn;
+import com.bradley.gwt.user.client.ui.Button;
 import com.bradley.gwt.user.client.ui.CancelButton;
 import com.bradley.gwt.user.client.ui.ComboBox;
 import com.bradley.gwt.user.client.ui.Dialog;
 import com.bradley.gwt.user.client.ui.EditorPanel;
+import com.bradley.gwt.user.client.ui.MenuButton;
 import com.bradley.gwt.user.client.ui.Notifier;
 import com.bradley.gwt.user.client.ui.Renderer;
 import com.bradley.gwt.user.client.ui.SaveButton;
 import com.bradley.gwt.user.client.ui.SuperBoxSelect;
-import com.bradley.gwt.user.client.ui.ToolTip;
+import com.bradley.gwt.user.client.ui.ToolBar;
 import com.bradley.gwt.user.client.ui.grid.Grid;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -45,9 +47,21 @@ public class TestApp implements EntryPoint {
 		//demoMasking();
 		//demoDialog();
 		//demoComboBox();
-		demoSuperBoxSelect();
-		demoGrid();
-		demoTooltip();
+		//demoSuperBoxSelect();
+		//demoGrid();
+		//demoTooltip();
+		demoToolBar();
+	}
+	
+	protected void demoToolBar() {
+		ToolBar toolbar = new ToolBar();
+		toolbar.add(new Button("test"));
+		
+		MenuButton btn = new MenuButton("menu button");
+		btn.add(new Label("line 1"));
+		btn.add(new Label("line 2"));
+		toolbar.add(btn);
+		RootPanel.get().add(toolbar);
 	}
 	
 	protected void demoTooltip() {
