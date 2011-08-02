@@ -4,13 +4,14 @@
     font-size: 11px !important;
 }
 @external html-face, gwt-Label;
-@sprite .button .html-face {
+.menuButton .html-face {
+    display: inline-block;
+}
+@sprite .menuButton span {
     gwt-image: "downArrow";
     background-repeat: no-repeat;
     background-position: right center;
-    padding-right: 15px;
-    width: auto;
-    height: auto;
+    display: inline-block;
 }
 @sprite .menu {
     gwt-image: "menuBackground";
@@ -21,6 +22,16 @@
     background-color: #F0F0F0;
     border: 1px solid #718BB7;
     padding: 2px;
+    z-index: 1500; /* appear above everything else */
+}
+@sprite .active {
+    gwt-image: "menuBackgroundActive";
+    width: auto;
+    height: auto;
+    background-repeat: repeat-x;
+    background-color: #EBF3FD;
+    background-position: top;
+    color:#233D6D;
 }
 .menu .gwt-Label {
     font-size: 11px;
@@ -29,6 +40,7 @@
     padding-left: 30px;
     padding-right: 5px;
     cursor: pointer;
+    border: 1px solid #F0F0F0;
 }
 @sprite .menu .gwt-Label.activeItem {
     gwt-image: "menuItemBackgroundActive";
@@ -38,13 +50,6 @@
     width: auto;
     height: auto;
     border:1px solid #AACCF6;
-}
-
-@sprite .active {
-    gwt-image: "menuBackgroundActive";
-    width: auto;
-    height: auto;
-    background-repeat: repeat-x;
 }
 @external .gwt-PushButton;
 .gwt-PushButton {

@@ -5,7 +5,7 @@ import com.google.gwt.resources.client.ImageResource;
 
 public interface MenuButtonClientBundle extends ButtonResources {
 
-	public interface MenuButtonStyle extends Style {		
+	public interface MenuButtonStyle extends Style {
 		String menuButton();
 		
 		String menu();

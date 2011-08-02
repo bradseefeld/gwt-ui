@@ -1,5 +1,6 @@
 package com.bradley.gwt.user.client.ui;
 
+import com.bradley.gwt.user.client.resource.ButtonResources;
 import com.bradley.gwt.user.client.resource.MenuButtonClientBundle;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -8,6 +9,7 @@ import com.google.gwt.event.dom.client.MouseOutEvent;
 import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.event.dom.client.MouseOverHandler;
+import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Panel;
@@ -18,23 +20,24 @@ public class MenuButton extends FlowPanel {
 	protected Panel menu;
 	
 	protected Button button;
-	
-	protected MenuButtonClientBundle resources;
-	
-	private static final MenuButtonClientBundle _resources = GWT.create(MenuButtonClientBundle.class);
+		
+	private static final MenuButtonClientBundle resources = GWT.create(MenuButtonClientBundle.class);
 	
 	public MenuButton(String label) {
-		this(label, _resources);
+		this(label, (ButtonResources) resources);
 	}
 	
-	public MenuButton(String label, MenuButtonClientBundle resources) {
-		this.resources = resources;
-		
+	public MenuButton(String label, ButtonResources resources) {
+		MenuButton.resources.style().ensureInjected();
 		resources.style().ensureInjected();
-		addStyleName(resources.style().menuButton());
 		
-		initButton(label);
+		addStyleName(MenuButton.resources.style().menuButton());
+		
+		initButton(label, resources);
 		initMenu();
+		
+		// Add a span for the down arrow.
+		button.getElement().appendChild(DOM.createSpan());
 	}
 	
 	public void add(final Label item) {
@@ -56,7 +59,6 @@ public class MenuButton extends FlowPanel {
 			public void onMouseOver(MouseOverEvent event) {
 				item.addStyleName(resources.style().activeItem());
 			}
-			
 		});
 		
 		item.addMouseOutHandler(new MouseOutHandler() {
@@ -65,7 +67,6 @@ public class MenuButton extends FlowPanel {
 			public void onMouseOut(MouseOutEvent event) {
 				item.removeStyleName(resources.style().activeItem());
 			}
-			
 		});
 	}
 	
@@ -81,7 +82,7 @@ public class MenuButton extends FlowPanel {
 		}
 	}
 	
-	private void initButton(String label) {
+	private void initButton(String label, ButtonResources resources) {
 		button = new Button(label, resources) {
 			
 			@Override

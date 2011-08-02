@@ -10,6 +10,8 @@ import com.bradley.gwt.demo.user.client.request.EmployeeRequestFactory;
 import com.bradley.gwt.user.client.celltable.CellTableResources;
 import com.bradley.gwt.user.client.celltable.PagingCellTablePanel;
 import com.bradley.gwt.user.client.celltable.TextColumn;
+import com.bradley.gwt.user.client.resource.AddButtonResources;
+import com.bradley.gwt.user.client.resource.ButtonResources;
 import com.bradley.gwt.user.client.ui.Button;
 import com.bradley.gwt.user.client.ui.CancelButton;
 import com.bradley.gwt.user.client.ui.ComboBox;
@@ -57,7 +59,7 @@ public class TestApp implements EntryPoint {
 		ToolBar toolbar = new ToolBar();
 		toolbar.add(new Button("test"));
 		
-		MenuButton btn = new MenuButton("menu button");
+		MenuButton btn = new MenuButton("menu button", (ButtonResources) GWT.create(AddButtonResources.class));
 		btn.add(new Label("line 1"));
 		btn.add(new Label("line 2"));
 		toolbar.add(btn);
