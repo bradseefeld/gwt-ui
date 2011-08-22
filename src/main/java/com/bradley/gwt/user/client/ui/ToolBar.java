@@ -1,48 +1,43 @@
 package com.bradley.gwt.user.client.ui;
 
-import java.util.Iterator;
-
 import com.bradley.gwt.user.client.resource.ToolBarClientBundle;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.safehtml.shared.SafeHtml;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HasWidgets;
-import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ToolBar extends Composite implements HasWidgets {
-		
-	protected Panel toolbar;
+public class ToolBar extends HTMLPanel implements HasWidgets {
 	
 	private static final ToolBarClientBundle resources = GWT.create(ToolBarClientBundle.class);
 	
+	public ToolBar(String html) {
+		super("div", html);
+
+		init();
+	}
+	
+	public ToolBar(SafeHtml safe) {
+		super(safe);
+		init();
+	}
+	
+	public ToolBar(String tag, String html) {
+		super(tag, html);
+		init();
+	}
+	
 	public ToolBar() {
-		
-		toolbar = new FlowPanel();
-		toolbar.addStyleName(resources.style().toolbar());
-		initWidget(toolbar);
-		
-		resources.style().ensureInjected();
+		this("");
 	}
 	
 	public void add(Widget button) {
-		toolbar.add(button);
-		toolbar.setVisible(true);
+		super.add(button);
+		setVisible(true);
 	}
-
-	@Override
-	public void clear() {
-		toolbar.clear();
-		
-	}
-
-	@Override
-	public Iterator<Widget> iterator() {
-		return toolbar.iterator();
-	}
-
-	@Override
-	public boolean remove(Widget w) {
-		return toolbar.remove(w);
+	
+	protected void init() {
+		addStyleName(resources.style().toolbar());
+		resources.style().ensureInjected();
 	}
 }

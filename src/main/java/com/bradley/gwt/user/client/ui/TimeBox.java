@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -38,12 +40,15 @@ public class TimeBox extends Composite implements HasValue<Date> {
 	public void setFormat(DateTimeFormat format) {
 		this.format = format;
 	}
+	
+	public void addChangeHandler(ChangeHandler handler) {
+		textbox.addChangeHandler(handler);
+	}
 
 	@Override
 	public HandlerRegistration addValueChangeHandler(
 			ValueChangeHandler<Date> handler) {
-		// TODO Auto-generated method stub
-		return null;
+		return textbox.addHandler(handler, ValueChangeEvent.getType());
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.LeafValueEditor;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -38,13 +39,18 @@ public class DateTimeEditor extends Composite implements LeafValueEditor<Date> {
 	public DateTimeEditor() {
 		super();
 		Binder binder = GWT.create(Binder.class);
-		initWidget(binder.createAndBindUi(this));
+		initWidget(binder.createAndBindUi(this));		
+	}
+	
+	public void addChangeHandler(ChangeHandler handler) {
+		date.addChangeHandler(handler);
+		time.addChangeHandler(handler);
 	}
 	
 	@Override
 	public void setValue(Date value) {
 		date.setValue(value);
-		time.setValue(value);
+		time.setValue(value);		
 	}
 
 	/**
@@ -74,7 +80,7 @@ public class DateTimeEditor extends Composite implements LeafValueEditor<Date> {
 			// Need to add a day to time to account for day overflow
 			timeMillis += dayMillis;
 		} else if (timeMillis + offsetMillis > dayMillis) {
-			timeMillis -= dayMillis;
+			//timeMillis -= dayMillis;
 		}
 		
 		timeMillis -= offsetMillis;

@@ -7,6 +7,7 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.event.dom.client.BlurHandler;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.FocusHandler;
 import com.google.gwt.event.dom.client.HasAllFocusHandlers;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -81,9 +82,14 @@ public class DateBox extends Composite implements HasValue<Date>, HasAllFocusHan
 		setValue(value);		
 	}
 	
+	public void addChangeHandler(ChangeHandler handler) {
+		textbox.addChangeHandler(handler);
+	}
+	
 	@Override
 	public HandlerRegistration addValueChangeHandler(
 			ValueChangeHandler<Date> handler) {
+		
 		return textbox.addHandler(handler, ValueChangeEvent.getType());
 	}
 	

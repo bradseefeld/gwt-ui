@@ -11,7 +11,7 @@
 		}
 	</ui:style>
 	<g:FlowPanel ui:field="panel">
-		<m:ToolBar ui:field="toolbar"></m:ToolBar>
+		<m:ToolBar ui:field="toolbar" />
 		<g:SimplePanel ui:field="body" addStyleNames="{style.body}"></g:SimplePanel>
 		<g:SimplePanel ui:field="footer"></g:SimplePanel>
 	</g:FlowPanel>

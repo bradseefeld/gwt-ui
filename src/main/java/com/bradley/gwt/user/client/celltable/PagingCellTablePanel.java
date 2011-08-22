@@ -103,8 +103,8 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 
 			@Override
 			public void onProxyChange(EntityProxyChange<T> event) {
-				
-				if (event.getWriteOperation() == WriteOperation.PERSIST) {
+				if (event.getWriteOperation() == WriteOperation.PERSIST ||
+						event.getWriteOperation() == WriteOperation.DELETE) {
 					logger.fine("Change (" + event.getWriteOperation().toString() + ") detected for " + entityClass.getName() + ". Reloading grid.");
 					reload();
 				}

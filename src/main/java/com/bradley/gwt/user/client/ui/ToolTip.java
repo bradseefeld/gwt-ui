@@ -41,6 +41,6 @@ public class ToolTip extends FlowPanel implements HasWidgets {
 		$wnd.$(target).tooltip({
 			tip: tooltip,
 			relative: true
-		}).dynamic({ bottom: { direction: 'down', bounce: true } });;
+		}).dynamic({ bottom: { direction: 'down', bounce: true } });
 	}-*/;
 }

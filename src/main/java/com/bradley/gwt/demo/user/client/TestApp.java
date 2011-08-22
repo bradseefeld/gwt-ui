@@ -15,6 +15,7 @@ import com.bradley.gwt.user.client.resource.ButtonResources;
 import com.bradley.gwt.user.client.ui.Button;
 import com.bradley.gwt.user.client.ui.CancelButton;
 import com.bradley.gwt.user.client.ui.ComboBox;
+import com.bradley.gwt.user.client.ui.DateTimeEditor;
 import com.bradley.gwt.user.client.ui.Dialog;
 import com.bradley.gwt.user.client.ui.EditorPanel;
 import com.bradley.gwt.user.client.ui.MenuButton;
@@ -53,6 +54,12 @@ public class TestApp implements EntryPoint {
 		//demoGrid();
 		//demoTooltip();
 		demoToolBar();
+		demoDateEditor();
+	}
+	
+	protected void demoDateEditor() {
+		DateTimeEditor dt = new DateTimeEditor();
+		RootPanel.get().add(dt);
 	}
 	
 	protected void demoToolBar() {
