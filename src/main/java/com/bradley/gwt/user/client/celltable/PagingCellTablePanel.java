@@ -81,6 +81,7 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 	public PagingCellTablePanel(Class<T> entityClass, AbstractPager pager) {
 		this.pager = pager;
 		this.entityClass = entityClass;
+		
 	}
 	
 	public void initialize(final CellTable<T> table, RequestFactory requestFactory, EventBus eventBus) {
@@ -93,8 +94,8 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 		body.setWidget(table);
 	
 		footer.setWidget(pager);
-		
 		toolbar.setVisible(false);
+		setTableHeight(450);
 		
 		initializePagination(pager);
 		initializeSorting();
@@ -113,6 +114,10 @@ public abstract class PagingCellTablePanel<T extends EntityProxy> extends Compos
 		
 		noDataAvailable = new Label(UIConstants.INSTANCE.noDataAvailable());
 		noDataAvailable.addStyleName(UIClientBundle.INSTANCE.getUICssResource().noData());
+	}
+	
+	public void setTableHeight(int pixels) {
+		body.setHeight(pixels + "px");
 	}
 	
 	/**

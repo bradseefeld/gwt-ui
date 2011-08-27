@@ -37,10 +37,9 @@ public class ToolTip extends FlowPanel implements HasWidgets {
 	
 	protected static native void tooltip(Element target, String tooltip)/*-{
 		tooltip = "#" + tooltip;
-		$wnd.$(tooltip).insertAfter($wnd.$(target));
+		//$wnd.$(tooltip).insertAfter($wnd.$(target));
 		$wnd.$(target).tooltip({
 			tip: tooltip,
-			relative: true
 		}).dynamic({ bottom: { direction: 'down', bounce: true } });
 	}-*/;
 }

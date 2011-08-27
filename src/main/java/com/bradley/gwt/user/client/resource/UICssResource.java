@@ -6,9 +6,6 @@ public interface UICssResource extends CssResource {
 	
 	@ClassName("hidden")
 	String hidden();
-		
-	@ClassName("scrolled-dialog")
-	String scrolledDialog();
 	
 	@ClassName("notifications")
 	String notifications();

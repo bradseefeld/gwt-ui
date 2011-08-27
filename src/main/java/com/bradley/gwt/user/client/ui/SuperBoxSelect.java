@@ -19,10 +19,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.FocusEvent;
 import com.google.gwt.event.dom.client.FocusHandler;
-import com.google.gwt.event.dom.client.MouseOutEvent;
-import com.google.gwt.event.dom.client.MouseOutHandler;
-import com.google.gwt.event.dom.client.MouseOverEvent;
-import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.EventListener;
@@ -175,6 +171,7 @@ public class SuperBoxSelect<T> extends FlowPanel implements LeafValueEditor<Set<
 			}
 			
 			final Anchor a = new Anchor();
+			a.setHref("javascript:;"); // So that they fire :hover, etc
 			a.setText(display);
 			RootPanel.get().add(a);
 			autoCompleteList.addItem(a.getElement());
@@ -186,22 +183,6 @@ public class SuperBoxSelect<T> extends FlowPanel implements LeafValueEditor<Set<
 					addSelection(selection);
 					setAutoCompleteSelections(new HashSet<T>());
 					input.setValue("");
-				}
-			});
-			
-			a.addMouseOverHandler(new MouseOverHandler() {
-
-				@Override
-				public void onMouseOver(MouseOverEvent event) {
-					a.addStyleName(resources.getSuperBoxSelectCss().autoCompleteItemHover());
-				}
-			});
-			
-			a.addMouseOutHandler(new MouseOutHandler() {
-
-				@Override
-				public void onMouseOut(MouseOutEvent event) {
-					a.removeStyleName(resources.getSuperBoxSelectCss().autoCompleteItemHover());
 				}
 			});
 		}

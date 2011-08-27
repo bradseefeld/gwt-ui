@@ -10,7 +10,7 @@
 			<b:DateBox ui:field="date" addStyleNames="field" />
 		</div>
 		
-		<div class="label-field">
+		<div class="label-field required">
 			<g:Label text="Time" ui:field="timeLabel" addStyleNames="label auto" />
 			<b:TimeBox ui:field="time" addStyleNames="field" />
 		</div>

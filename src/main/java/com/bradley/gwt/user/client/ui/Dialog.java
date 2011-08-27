@@ -1,5 +1,7 @@
 package com.bradley.gwt.user.client.ui;
 
+import com.bradley.gwt.user.client.resource.DialogClientBundle;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -18,12 +20,18 @@ public class Dialog implements HasOneWidget {
 	protected String title;
 	
 	public Dialog(String title, boolean modal) {
-		this.title = title;
-		this.modal = modal;
+		this(title, modal, (DialogClientBundle) GWT.create(DialogClientBundle.class));
 	}
 	
 	public Dialog(String title) {
 		this(title, false);
+	}
+	
+	public Dialog(String title, boolean modal, DialogClientBundle resources) {
+		this.title = title;
+		this.modal = modal;
+		
+		resources.getStyle().ensureInjected();
 	}
 	
 	@Override
@@ -40,6 +48,7 @@ public class Dialog implements HasOneWidget {
 	public void setWidget(Widget w) {
 		this.widget = w;
 		RootPanel.get().add(w);
+		w.addStyleName("test");
 		dialog(w.getElement(), title, modal);
 	}
 	
@@ -86,7 +95,6 @@ public class Dialog implements HasOneWidget {
 	protected static native void dialog(Element el, String title, boolean modal)/*-{
 		$wnd.$(el).dialog({
 			autoOpen: false,
-			hide: "slide",
 			modal: modal,
 			title: title
 		});

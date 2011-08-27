@@ -42,13 +42,13 @@ public class TestApp implements EntryPoint {
 	@Override
 	public void onModuleLoad() {
 
-		// demoCellTableDialog();
+		//demoCellTableDialog();
 		// demoNotifications();
 		// demoButtons();
 		//demoDualListBox();
 		//demoEditorPanel();
 		//demoMasking();
-		//demoDialog();
+		demoDialog();
 		//demoComboBox();
 		//demoSuperBoxSelect();
 		//demoGrid();
@@ -201,8 +201,5 @@ public class TestApp implements EntryPoint {
 		};
 
 		panel.initialize(table, reqFactory, eventBus);
-
-		
 	}
-
 }

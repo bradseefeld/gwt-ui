@@ -40,7 +40,6 @@ public class EditorPanel<T> extends Composite implements Editor<T> {
 				focus(getElement());
 				autoWidth(getElement());
 				highlight(getElement());
-				// emptyText(getElement()); // This would cause problems with pulling the data out of the form
 			}
 		});
 	}
@@ -92,39 +91,6 @@ public class EditorPanel<T> extends Composite implements Editor<T> {
 			
 			input.blur(function() {
 				input.removeClass('focus');
-			});
-		});
-	}-*/;
-	
-	/**
-	 * TODO: Finish this implementation. We need the empty values to be ignored
-	 * by 'flush' so that they are included as legitimate values.
-	 * 
-	 * @param el
-	 */
-	public static native void emptyText(Element el) /*-{
-		
-		var attr = 'title';
-		$wnd.$('input', el).each(function() {
-			var input = $wnd.$(this);
-			
-			if (input.val() == undefined || input.val() == "") {
-				input.val(input.attr(attr)).addClass('empty');
-			}
-			
-			input.focus(function() {
-				
-				if(input.val() == input.attr(attr)) {
-					input.val('').removeClass('empty');
-				}
-				
-			});
-			
-			input.blur(function() {
-				
-				if(input.val() == '') {
-					input.val(input.attr(attr)).addClass('empty');
-				}
 			});
 		});
 	}-*/;

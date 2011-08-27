@@ -1,51 +1,7 @@
+div:focus {
+    outline: none;
+}
 .hidden {
-	display: none;
-}
-.scrolled-dialog {
-	border: 2px solid #999;
-	-moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
-    -khtml-border-radius: 6px;
-    border-radius: 6px;
-}
-
-@external .dialogTop;
-.scrolled-dialog .dialogTop {
-	background-color: #ddd;
-}
-@external .dialogTopCenterInner;
-.scrolled-dialog .dialogTopCenterInner {
-	font-size: 12px;
-	font-weight: bold;
-	padding-top: 7px;
-	color: #666;
-	padding-left: 7px;
-}
-.scrolled-dialog .dialogTopCenterInner button {
-	float: right;
-	font-size: 11px;
-	margin-top: -2px;
-}
-.scrolled-dialog .dialogTopCenterInner table {
-	width: 100%;
-}
-@external .dialogMiddleCenter;
-.scrolled-dialog .dialogMiddleCenter {
-	padding: 0px;
-}
-
-@external .dialogTopLeft, .dialogTopRight, .dialogMiddleLeft, .dialogMiddleRight, .dialogBottomLeft, .dialogBottomRight, .dialogBottomCenter;
-.scrolled-dialog .dialogTopLeft, 
-.scrolled-dialog .dialogTopRight,
-.scrolled-dialog .dialogMiddleLeft,
-.scrolled-dialog .dialogMiddleRight,
-.scrolled-dialog .dialogBottomLeft,
-.scrolled-dialog .dialogBottomRight,
-.scrolled-dialog .dialogBottomCenter {
-	background: none;
-	padding: 0px;
-	margin: 0px;
-	border-spacing: 0px;
 	display: none;
 }
 
@@ -133,26 +89,4 @@
 	font-size: 22px;
 	font-style: italic;
 	color: #999;
-}
-
-/**
- * Fixes for jQuery UI
- */
-@external .ui-widget, .ui-dialog, .ui-dialog-titlebar, .ui-dialog-content;
-.ui-widget {
-	font-family: inherit;
-	font-size: inherit;
-}
-.ui-dialog {
-	padding: 0px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
-}
-.ui-dialog-titlebar {
-	border-radius: 0px;
-}
-.ui-dialog .ui-dialog-content {
-	padding-top: 2px;
-}
 }
