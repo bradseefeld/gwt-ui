@@ -3,6 +3,7 @@ package com.bradley.gwt.user.client.ui;
 import java.util.Date;
 import java.util.logging.Logger;
 
+import com.bradley.gwt.user.client.i18n.UIConstants;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Element;
@@ -14,7 +15,6 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasValue;
-import com.google.gwt.user.client.ui.TextBox;
 
 public class TimeBox extends Composite implements HasValue<Date> {
 
@@ -23,9 +23,12 @@ public class TimeBox extends Composite implements HasValue<Date> {
 	protected DateTimeFormat format = DateTimeFormat.getFormat(PredefinedFormat.TIME_SHORT);
 	
 	private static final Logger LOG = Logger.getLogger(TimeBox.class.getName());
+	
+	private static final UIConstants constants = UIConstants.INSTANCE;
 
 	public TimeBox() {
 		textbox = new TextBox();
+		textbox.setEmptyText(constants.chooseTimeDotDotDot());
 		initWidget(textbox);
 		
 		Scheduler.get().scheduleDeferred(new ScheduledCommand() {

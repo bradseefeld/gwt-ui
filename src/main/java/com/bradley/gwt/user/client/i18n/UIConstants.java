@@ -18,4 +18,13 @@ public interface UIConstants extends Constants {
 	
 	@DefaultStringValue("Beging typing...")
 	String beginTyping();
+	
+	@DefaultStringValue("Search")
+	String search();
+
+	@DefaultStringValue("Choose date...")
+	String chooseDateDotDotDot();
+	
+	@DefaultStringValue("Choose time...")
+	String chooseTimeDotDotDot();
 }

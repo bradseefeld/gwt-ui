@@ -3,6 +3,7 @@ package com.bradley.gwt.user.client.ui;
 import java.util.Date;
 import java.util.logging.Logger;
 
+import com.bradley.gwt.user.client.i18n.UIConstants;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.editor.client.LeafValueEditor;
@@ -18,7 +19,6 @@ import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasValue;
-import com.google.gwt.user.client.ui.TextBox;
 
 /**
  * A form field that has date values. This widget is enhanced with jquery date
@@ -32,8 +32,11 @@ public class DateBox extends Composite implements HasValue<Date>, HasAllFocusHan
 	
 	private static final Logger LOG = Logger.getLogger(DateBox.class.getName());
 	
+	private static final UIConstants constants = UIConstants.INSTANCE;
+	
 	public DateBox() {
 		textbox = new TextBox();
+		textbox.setEmptyText(constants.chooseDateDotDotDot());
 		initWidget(textbox);
 		
 		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
