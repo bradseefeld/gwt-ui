@@ -2,6 +2,8 @@ package com.bradley.gwt.user.client.ui;
 
 import com.bradley.gwt.user.client.resource.DialogClientBundle;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.HasOneWidget;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -32,6 +34,15 @@ public class Dialog implements HasOneWidget {
 		this.modal = modal;
 		
 		resources.getStyle().ensureInjected();
+		
+		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
+			@Override
+			public void execute() {
+				setMinHeight(400);
+				setMinWidth(600);
+			}
+		});
 	}
 	
 	@Override
@@ -48,7 +59,6 @@ public class Dialog implements HasOneWidget {
 	public void setWidget(Widget w) {
 		this.widget = w;
 		RootPanel.get().add(w);
-		w.addStyleName("test");
 		dialog(w.getElement(), title, modal);
 	}
 	
@@ -84,6 +94,14 @@ public class Dialog implements HasOneWidget {
 		setMinWidth(widget.getElement(), pixelWidth);
 	}
 	
+	public void setMinHeight(int pixelHeight) {
+		setMinHeight(widget.getElement(), pixelHeight);
+	}
+	
+	protected static native void setMinHeight(Element el, int pixelHeight)/*-{
+		$wnd.$(el).dialog("option", "minHeight", pixelHeight);
+	}-*/;
+	
 	protected static native void setMinWidth(Element el, int pixelWidth)/*-{
 		$wnd.$(el).dialog("option", "minWidth", pixelWidth);
 	}-*/;
@@ -99,5 +117,4 @@ public class Dialog implements HasOneWidget {
 			title: title
 		});
 	}-*/;
-
 }

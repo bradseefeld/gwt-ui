@@ -3,16 +3,30 @@
 	xmlns:m='urn:import:com.bradley.gwt.user.client.ui'>
 
 	<ui:style>
+		.container {
+			min-height: 200px;
+		}
+		.footer {
+			margin-left: 20px;
+			margin-top: 10px;
+		}
 		.body {
+			width: 100%;
+			height: 200px;
 			overflow: auto;
 		}
 		.body table {
 			width: 100%;
 		}
 	</ui:style>
-	<g:FlowPanel ui:field="panel">
-		<m:ToolBar ui:field="toolbar" />
-		<g:SimplePanel ui:field="body" addStyleNames="{style.body}"></g:SimplePanel>
-		<g:SimplePanel ui:field="footer"></g:SimplePanel>
-	</g:FlowPanel>
+	<g:ResizeLayoutPanel ui:field="container" addStyleNames="{style.container}">
+		<g:HTMLPanel>
+			<g:SimplePanel ui:field="headerContainer">
+				<m:ToolBar ui:field="toolbar" />
+			</g:SimplePanel>
+			
+			<g:ScrollPanel ui:field="body" addStyleNames="{style.body}" />
+			<g:SimplePanel ui:field="footer" addStyleNames="{style.footer}" />
+		</g:HTMLPanel>
+	</g:ResizeLayoutPanel>
 </ui:UiBinder>

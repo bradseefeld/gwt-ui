@@ -6,9 +6,7 @@ import com.google.gwt.resources.client.ImageResource;
 
 public interface DialogClientBundle extends ClientBundle {
 
-	public interface Style extends CssResource {
-		
-	}
+	public interface Style extends CssResource {}
 	
 	@Source("dialog.css")
 	Style getStyle();

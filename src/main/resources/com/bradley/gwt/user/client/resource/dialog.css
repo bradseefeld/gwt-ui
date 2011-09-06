@@ -9,9 +9,8 @@
     box-shadow: 5px 5px 5px #ccc;
     font-size: 11px;
     border: 1px solid #A9A9A9;
-    
 }
-.ui-corner-all {
+.ui-dialog.ui-corner-all {
     -webkit-border-bottom-left-radius: 0;
     -webkit-border-bottom-right-radius: 0;
     -moz-border-radius-bottomleft: 0;
@@ -45,4 +44,5 @@
     padding: 4px !important;
     font-family: inherit;
     font-size: inherit;
+    overflow: hidden !important;
 }

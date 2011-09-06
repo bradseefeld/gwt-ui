@@ -57,8 +57,9 @@ public class ComboBox<T> extends ListBox implements LeafValueEditor<T> {
 		}
 				
 		for (int i = 0; i < getItemCount(); i++) {
-			if (getValue(i).equals(value.toString())) {
+			if (getValue(i).equals(stringValue(value))) {
 				setItemSelected(i, true);
+				lazyValue = null;
 				return;
 			}
 		}
@@ -86,5 +87,9 @@ public class ComboBox<T> extends ListBox implements LeafValueEditor<T> {
 	 */
 	protected T castStringValue(String value) {
 		return (T) value;
+	}
+	
+	protected String stringValue(T value) {
+		return value.toString();
 	}
 }
