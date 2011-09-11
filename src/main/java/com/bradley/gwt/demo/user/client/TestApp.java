@@ -8,9 +8,11 @@ import java.util.Set;
 import com.bradley.gwt.demo.user.client.entity.EmployeeProxy;
 import com.bradley.gwt.demo.user.client.request.EmployeeRequestFactory;
 import com.bradley.gwt.user.client.celltable.CellTable;
-import com.bradley.gwt.user.client.celltable.CellTableResources;
 import com.bradley.gwt.user.client.celltable.PagingCellTablePanel;
 import com.bradley.gwt.user.client.celltable.TextColumn;
+import com.bradley.gwt.user.client.event.EntityProxyRemoteChange;
+import com.bradley.gwt.user.client.event.EntityProxyRemoteChange.Handler;
+import com.bradley.gwt.user.client.event.EntityProxyRemoteChange.WriteOperation;
 import com.bradley.gwt.user.client.resource.AddButtonResources;
 import com.bradley.gwt.user.client.resource.ButtonResources;
 import com.bradley.gwt.user.client.ui.Button;
@@ -30,6 +32,8 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.cellview.client.ColumnSortEvent;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Label;
@@ -37,13 +41,14 @@ import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.view.client.ListDataProvider;
+import com.google.web.bindery.event.shared.Event;
 
 public class TestApp implements EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
 
-		demoCellTableDialog();
+		//demoCellTableDialog();
 		// demoNotifications();
 		// demoButtons();
 		//demoDualListBox();
@@ -56,6 +61,29 @@ public class TestApp implements EntryPoint {
 		//demoTooltip();
 		//demoToolBar();
 		//demoDateEditor();
+		
+		demoErrorValidation();
+		demoRemoteChange();
+	}
+	
+	protected void demoRemoteChange() {
+		EventBus eventBus = new SimpleEventBus();
+		
+		EntityProxyRemoteChange.registerForProxyType(eventBus, EmployeeProxy.class, new Handler<EmployeeProxy>() {
+
+			@Override
+			public void onRemoteChange(EntityProxyRemoteChange<EmployeeProxy> event) {
+				Window.alert("received");
+			}
+		});
+		EmployeeRequestFactory factory = GWT.create(EmployeeRequestFactory.class);
+		EmployeeProxy employee = factory.request().create(EmployeeProxy.class);
+		Event event = new EntityProxyRemoteChange<EmployeeProxy>(employee, WriteOperation.SAVE);
+		eventBus.fireEventFromSource(event, EmployeeProxy.class);
+	}
+	
+	protected void demoErrorValidation() {
+		
 	}
 	
 	protected void demoDateEditor() {
