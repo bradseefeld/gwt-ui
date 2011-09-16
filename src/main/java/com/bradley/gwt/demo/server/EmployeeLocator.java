@@ -27,6 +27,10 @@ public class EmployeeLocator extends Locator<Employee, String> {
 	public Integer count() {
 		return 2312;
 	}
+	
+	public Employee save(Employee e) {
+		return e;
+	}
 
 	@Override
 	public Employee create(Class<? extends Employee> clazz) {

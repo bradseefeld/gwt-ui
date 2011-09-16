@@ -1,0 +1,19 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'
+	xmlns:e='urn:import:com.google.gwt.editor.ui.client'
+	xmlns:a='urn:import:com.google.gwt.editor.ui.client.adapters'
+	xmlns:b='urn:import:com.bradley.gwt.user.client.ui'>
+
+	<g:HTMLPanel>
+		<div class="label-field required">
+			<div class="label auto">First Name:</div>
+			<e:ValueBoxEditorDecorator addStyleNames="field">
+				<e:valuebox>
+					<b:TextBox ui:field="firstName" />
+				</e:valuebox>
+			</e:ValueBoxEditorDecorator>
+		</div>
+		
+		<b:SaveButton ui:field="save" />
+	</g:HTMLPanel>
+</ui:UiBinder>

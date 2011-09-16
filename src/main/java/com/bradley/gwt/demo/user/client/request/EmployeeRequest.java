@@ -29,4 +29,6 @@ public interface EmployeeRequest extends RequestContext {
 	 * @return
 	 */
 	Request<Integer> count();
+	
+	Request<EmployeeProxy> save(EmployeeProxy employee);
 }
