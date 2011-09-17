@@ -1,33 +1,22 @@
 package com.bradley.gwt.user.client.ui;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
-import com.bradley.gwt.user.client.resource.UIClientBundle;
-import com.bradley.gwt.user.client.resource.UICssResource;
-import com.google.gwt.user.client.Timer;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.Panel;
-import com.google.gwt.user.client.ui.SimplePanel;
+import com.bradley.gwt.user.client.resource.NotifierClientBundle;
+import com.bradley.gwt.user.client.resource.NotifierClientBundle.NotifierCssResource;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.RepeatingCommand;
+import com.google.gwt.user.client.Window;
 
 /**
  * Provides a notification area to display messages to the user. This class should
  * probably be a Singleton when it is used. Use GIN to achieve singleton.
  */
-public class Notifier extends FlowPanel {
+public class Notifier extends NotificationMole {
 	
-	Map<String, List<Panel>> notifications = new HashMap<String, List<Panel>>();
+	protected String currentMessage;
 	
-	/** Number of milliseconds before notifications disappear. */
-	protected  int notificationDelay = 10000;
+	protected static final NotifierCssResource css = NotifierClientBundle.INSTANCE.style();
 	
-	/** The max number of notifications that should ever show. */
-	protected static final int MAX_NOTIFICATIONS = 4;
-	
-	protected static final UICssResource css = UIClientBundle.INSTANCE.getUICssResource();
+	protected static final int HIDE_DELAY = 7000;
 	
 	private static Notifier instance;
 	
@@ -37,7 +26,7 @@ public class Notifier extends FlowPanel {
 	public Notifier() {
 		css.ensureInjected();
 		addStyleName(css.notifications());
-		addStyleName(css.hidden());
+		setAnimationDuration(500);
 	}
 	
 	public static Notifier getInstance() {
@@ -49,28 +38,16 @@ public class Notifier extends FlowPanel {
 		return instance;
 	}
 	
-	public void clearWarnings() {
-		clear(notifications.get(css.warn()));
-	}
-	
-	/**
-	 * Remove all error type notifications from the Notifier.
-	 */
-	public void clearErrors() {
-		clear(notifications.get(css.error()));
-	}
-	
 	/**
 	 * Display a success message.
 	 * 
 	 * @param msg The message to display as success.
-	 * @return The panel that contains the message.
 	 */
-	public Panel success(String msg) {
+	public void success(String msg) {
+		clearStyles();
+		addStyleName(css.success());
+		show(msg);
 		
-		Label label = new Label(msg);
-		label.addStyleName(css.success());
-		return show(label);
 	}
 	
 	/**
@@ -80,10 +57,10 @@ public class Notifier extends FlowPanel {
 	 * @param msg The message to display as an error.
 	 * @return The panel that contains the message.
 	 */
-	public Panel error(String msg) {
-		Label label = new Label(msg);
-		label.addStyleName(css.error());
-		return show(label, -1);
+	public void error(String msg) {
+		clearStyles();
+		show(msg);
+		addStyleName(css.error());
 	}
 	
 	/**
@@ -92,12 +69,11 @@ public class Notifier extends FlowPanel {
 	 * that they will automatically be logged off in 1 minute.
 	 * 
 	 * @param msg The message to display as a warning.
-	 * @return The panel that contains the message.
 	 */
-	public Panel warn(String msg) {
-		Label label = new Label(msg);
-		label.addStyleName(css.warn());
-		return show(label);
+	public void warn(String msg) {
+		clearStyles();
+		show(msg);
+		addStyleName(css.warn());
 	}
 	
 	/**
@@ -106,66 +82,37 @@ public class Notifier extends FlowPanel {
 	 * the actions of another dispatcher on the system.
 	 * 
 	 * @param msg The message to display as a notification.
-	 * @return The panel that contains the message.
 	 */
-	public Panel info(String msg) {
-		Label label = new Label(msg);
-		label.addStyleName(css.info());
-		return show(label);
+	public void info(String msg) {
+		clearStyles();
+		show(msg);
+		addStyleName(css.info());
 	}
 	
-	protected Panel show(Label msg) {
-		return show(msg, notificationDelay);
-	}
-	
-	protected Panel show(Label msg, int delay) {
+	public void show(final String message) {
+		super.show(message);
+		this.currentMessage = message;
 		
-		final Panel wrapper = new SimplePanel();
-		wrapper.addStyleName(css.notification());
-		wrapper.addStyleName(msg.getStyleName());		
-		wrapper.add(msg);
-		
-		// Insert at the top
-		insert(wrapper, 0);
-		
-		if (delay > 0) {
-			// Remove message after a certain amount of time.
-			Timer timer = new Timer() {
+		Scheduler.get().scheduleFixedDelay(new RepeatingCommand() {
+
+			@Override
+			public boolean execute() {
 				
-				@Override
-				public void run() {
-					remove(wrapper);
+				if (message.equals(currentMessage)) {
+					Window.alert("hiding");
+					hideNow();
 				}
-			};
-			timer.schedule(delay);
-		}
-		
-		List<Panel> type = notifications.get(msg.getStyleName());
-		if (type == null) {
-			type = new LinkedList<Panel>();
-			notifications.put(msg.getStyleName(), type);
-		}
-		type.add(wrapper);
-		
-		// Remove notifications as needed.
-		while (getWidgetCount() > MAX_NOTIFICATIONS) {
-			remove(getWidgetCount() - 1);
-		}
-		
-		removeStyleName(css.hidden());
-		
-		return wrapper;
+				
+				return false;
+			}
+			
+		}, HIDE_DELAY);
 	}
 	
-	protected void clear(List<Panel> notifications) {
-		if (notifications == null) {
-			return;
-		}
-		
-		for (Panel notification : notifications) {
-			remove(notification);
-		}
-		
-		notifications.clear();
+	private void clearStyles() {
+		removeStyleName(css.info());
+		removeStyleName(css.success());
+		removeStyleName(css.error());
+		removeStyleName(css.warn());
 	}
 }

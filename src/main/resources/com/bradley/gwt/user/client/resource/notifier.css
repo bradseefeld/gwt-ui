@@ -1,0 +1,60 @@
+.notifications {
+    overflow: visible;
+}
+.notifications a {
+    color: black;
+}
+.notifications > div {
+    overflow: visible;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    -moz-box-shadow: 5px 5px 5px #ccc;
+    -webkit-box-shadow: 5px 5px 5px #ccc;
+    box-shadow: 5px 5px 5px #ccc;
+}
+.notifications div div {
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+.success div {
+    background-color: #CCFFCC;
+	border-color: green;
+}
+@sprite .success div div {
+	gwt-image: "tick";
+	width: auto;
+	height: auto;
+	padding-left: 20px;
+	color: green;
+    overflow: inherit;
+}
+.info div {
+	background-color: #EEFFFF;
+	border-color: #99FFFF;
+}
+.warn div {
+    border-color: orange;
+    background-color: #FFDD88;
+}
+@sprite .warn div div {
+	gwt-image: "warn";
+	width: auto;
+	height: auto;
+	padding-left: 23px;
+	color: #FF3300;
+}
+.error div {
+    background-color: #FFAA88;
+    border-color: red;
+}
+@sprite .error div div {
+	gwt-image: "error";
+	width: auto;
+	height: auto;
+	padding-left: 23px;
+	color: #CC1111;
+}

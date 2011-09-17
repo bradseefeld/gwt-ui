@@ -4,53 +4,6 @@ div:focus {
 .hidden {
 	display: none;
 }
-
-.notifications .notification {
-	margin: 5px;
-	padding: 8px;
-}
-.notifications .notification div {
-	background-position: left center;
-	background-repeat: no-repeat;
-}
-
-.notifications .notification.success {
-	background-color: #CCFFCC;
-	border: 1px solid green;
-	color: green;
-}
-@sprite .notifications .notification .success {
-	gwt-image: "tick";
-	width: auto;
-	height: auto;
-	padding-left: 23px;
-}
-.notifications .notification.info {
-	background-color: #EEFFFF;
-	border: 1px solid #99FFFF;
-}
-.notifications .notification.warn {
-	border: 1px solid orange;
-	color: #FF3300;
-	background-color: #FFDD88;
-}
-@sprite .notifications .notification .warn {
-	gwt-image: "warn";
-	width: auto;
-	height: auto;
-	padding-left: 23px;
-}
-.notifications .notification.error {
-	border: 1px solid red;
-	color: #CC1111;
-	background-color: #FFAA88;
-}
-@sprite .notifications .notification .error {
-	gwt-image: "error";
-	width: auto;
-	height: auto;
-	padding-left: 23px;
-}
 @external .gwt-PushButton;
 .gwt-PushButton {
 	display: inline-block;

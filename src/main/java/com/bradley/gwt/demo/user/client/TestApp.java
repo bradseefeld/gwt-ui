@@ -5,12 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import javax.validation.ConstraintViolation;
-
-import com.bradley.gwt.demo.user.client.editor.EmployeeEditor;
-import com.bradley.gwt.demo.user.client.editor.EmployeeEditor.Driver;
 import com.bradley.gwt.demo.user.client.entity.EmployeeProxy;
-import com.bradley.gwt.demo.user.client.request.EmployeeRequest;
 import com.bradley.gwt.demo.user.client.request.EmployeeRequestFactory;
 import com.bradley.gwt.user.client.celltable.CellTable;
 import com.bradley.gwt.user.client.celltable.PagingCellTablePanel;
@@ -26,7 +21,6 @@ import com.bradley.gwt.user.client.ui.ComboBox;
 import com.bradley.gwt.user.client.ui.DateTimeEditor;
 import com.bradley.gwt.user.client.ui.Dialog;
 import com.bradley.gwt.user.client.ui.EditorPanel;
-import com.bradley.gwt.user.client.ui.Mask;
 import com.bradley.gwt.user.client.ui.MenuButton;
 import com.bradley.gwt.user.client.ui.Notifier;
 import com.bradley.gwt.user.client.ui.Renderer;
@@ -36,8 +30,6 @@ import com.bradley.gwt.user.client.ui.ToolBar;
 import com.bradley.gwt.user.client.ui.grid.Grid;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.event.shared.EventBus;
@@ -50,8 +42,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.web.bindery.event.shared.Event;
-import com.google.web.bindery.requestfactory.gwt.client.RequestFactoryEditorDriver;
-import com.google.web.bindery.requestfactory.shared.Receiver;
 
 public class TestApp implements EntryPoint {
 
@@ -59,8 +49,8 @@ public class TestApp implements EntryPoint {
 	public void onModuleLoad() {
 
 		//demoCellTableDialog();
-		// demoNotifications();
-		// demoButtons();
+		demoNotifications();
+		//demoButtons();
 		//demoDualListBox();
 		//demoEditorPanel();
 		//demoMasking();
@@ -71,8 +61,6 @@ public class TestApp implements EntryPoint {
 		//demoTooltip();
 		//demoToolBar();
 		//demoDateEditor();
-		
-		demoErrorValidation();
 		//demoRemoteChange();
 	}
 	
@@ -90,46 +78,6 @@ public class TestApp implements EntryPoint {
 		EmployeeProxy employee = factory.request().create(EmployeeProxy.class);
 		Event event = new EntityProxyRemoteChange<EmployeeProxy>(employee, WriteOperation.SAVE);
 		eventBus.fireEventFromSource(event, EmployeeProxy.class);
-	}
-	
-	protected void demoErrorValidation() {
-		EmployeeEditor editor = new EmployeeEditor();
-		RootPanel.get().add(editor);
-		
-		EventBus eventBus = new SimpleEventBus();
-		EmployeeRequestFactory requestFactory = GWT.create(EmployeeRequestFactory.class);
-		requestFactory.initialize(eventBus);
-		final RequestFactoryEditorDriver<EmployeeProxy, EmployeeEditor> driver = GWT.create(Driver.class);
-		driver.initialize(requestFactory, editor);
-		
-		EmployeeRequest request = requestFactory.request();
-		final EmployeeProxy employee = request.create(EmployeeProxy.class);
-		driver.edit(employee, request);
-		
-		editor.getSaveButton().addClickHandler(new ClickHandler() {
-
-			@Override
-			public void onClick(ClickEvent event) {
-				EmployeeRequest request = (EmployeeRequest) driver.flush();
-				request.save(employee).fire(new Receiver<EmployeeProxy>() {
-
-					@Override
-					public void onSuccess(EmployeeProxy response) {
-						Window.alert("save success");
-					}
-					
-					@Override
-					public void onConstraintViolation(Set<ConstraintViolation<?>> violations) {
-						for (ConstraintViolation<?> violation : violations) {
-							Window.alert(violation.getPropertyPath().toString() + " " + violation.getMessage());
-						}
-						if (driver.setConstraintViolations(violations)) {
-							Window.alert("there were unconsumed errors");
-						}
-					}
-				});
-			}
-		});
 	}
 	
 	protected void demoDateEditor() {
