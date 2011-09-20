@@ -35,6 +35,22 @@ public class ToolTip extends FlowPanel implements HasWidgets {
 		});
 	}
 	
+	public void hide() {
+		_hide(getElement().getId());
+	}
+	
+	public void show() {
+		_show(getElement().getId());
+	}
+	
+	protected static native void _show(String tooltip) /*-{
+		$wnd.$("#" + tooltip).show();
+	}-*/;
+	
+	protected static native void _hide(String tooltip) /*-{
+		$wnd.$("#" + tooltip).hide();
+	}-*/;
+	
 	protected static native void tooltip(Element target, String tooltip)/*-{
 		tooltip = "#" + tooltip;
 		//$wnd.$(tooltip).insertAfter($wnd.$(target));

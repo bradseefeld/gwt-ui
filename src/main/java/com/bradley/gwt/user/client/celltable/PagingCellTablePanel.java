@@ -60,6 +60,8 @@ public class PagingCellTablePanel<T extends EntityProxy> extends Composite {
 	}
 	
 	public PagingCellTablePanel(CellTable<T> table, AbstractPager pager) {
+		UIClientBundle.INSTANCE.getUICssResource().ensureInjected();
+		
 		this.table = table;
 		this.pager = pager;
 		

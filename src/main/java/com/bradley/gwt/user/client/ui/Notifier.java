@@ -4,7 +4,6 @@ import com.bradley.gwt.user.client.resource.NotifierClientBundle;
 import com.bradley.gwt.user.client.resource.NotifierClientBundle.NotifierCssResource;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.RepeatingCommand;
-import com.google.gwt.user.client.Window;
 
 /**
  * Provides a notification area to display messages to the user. This class should
@@ -26,7 +25,7 @@ public class Notifier extends NotificationMole {
 	public Notifier() {
 		css.ensureInjected();
 		addStyleName(css.notifications());
-		setAnimationDuration(500);
+		//setAnimationDuration(500);
 	}
 	
 	public static Notifier getInstance() {
@@ -99,7 +98,6 @@ public class Notifier extends NotificationMole {
 			public boolean execute() {
 				
 				if (message.equals(currentMessage)) {
-					Window.alert("hiding");
 					hideNow();
 				}
 				

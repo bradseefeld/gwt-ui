@@ -56,6 +56,10 @@ public class EntityProxyRemoteChange<T extends EntityProxy> extends Event<Handle
 
 	@Override
 	protected void dispatch(Handler<T> handler) {
+		if (handler == null) {
+			return;
+		}
+		
 		handler.onRemoteChange(this);
 	}
 }
