@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.bradley.gwt.demo.user.client.entity.EmployeeProxy;
 import com.bradley.gwt.demo.user.client.request.EmployeeRequestFactory;
+import com.bradley.gwt.user.client.animation.MoveAnimation;
 import com.bradley.gwt.user.client.celltable.CellTable;
 import com.bradley.gwt.user.client.celltable.PagingCellTablePanel;
 import com.bradley.gwt.user.client.celltable.TextColumn;
@@ -28,8 +29,10 @@ import com.bradley.gwt.user.client.ui.SaveButton;
 import com.bradley.gwt.user.client.ui.SuperBoxSelect;
 import com.bradley.gwt.user.client.ui.ToolBar;
 import com.bradley.gwt.user.client.ui.grid.Grid;
+import com.google.gwt.animation.client.Animation;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style.Position;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.event.shared.EventBus;
@@ -50,6 +53,7 @@ public class TestApp implements EntryPoint {
 
 		//demoCellTableDialog();
 		demoNotifications();
+		demoMoveAnimation();
 		//demoButtons();
 		//demoDualListBox();
 		//demoEditorPanel();
@@ -62,6 +66,14 @@ public class TestApp implements EntryPoint {
 		//demoToolBar();
 		//demoDateEditor();
 		//demoRemoteChange();
+	}
+	
+	protected void demoMoveAnimation() {
+		Label label = new Label("test");
+		label.getElement().getStyle().setPosition(Position.ABSOLUTE);
+		RootPanel.get().add(label);
+		Animation ani = new MoveAnimation(label.getElement(), 600, 600);
+		ani.run(5000);
 	}
 	
 	protected void demoRemoteChange() {

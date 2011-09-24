@@ -112,7 +112,10 @@ public class PagingCellTablePanel<T extends EntityProxy> extends Composite {
 	@UiHandler("container")
 	void onResize(ResizeEvent event) {
 		int height = event.getHeight();
-		height -= 94;
-		body.setHeight(height + "px");
+		height -= 94; // TODO: Get rid of this
+		
+		if (height > 0) {
+			body.setHeight(height + "px");
+		}
 	}
 }

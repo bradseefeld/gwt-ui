@@ -5,6 +5,7 @@
 	<ui:style>
 		.container {
 			min-height: 200px;
+			height: 100%;
 		}
 		.footer {
 			margin-left: 20px;
