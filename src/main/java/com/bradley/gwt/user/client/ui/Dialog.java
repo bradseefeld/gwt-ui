@@ -114,7 +114,8 @@ public class Dialog implements HasOneWidget {
 		$wnd.$(el).dialog({
 			autoOpen: false,
 			modal: modal,
-			title: title
+			title: title,
+			resizable: false
 		});
 	}-*/;
 }

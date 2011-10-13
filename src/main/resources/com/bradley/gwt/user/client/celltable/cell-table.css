@@ -1,14 +1,18 @@
 @CHARSET "UTF-8"; 
 @def selectionBorderWidth 0px; 
-.cellTableWidget { 
+.cellTableWidget {
+	width: 100%;
+	margin-bottom: 18px;
+	padding: 0;
+	border-collapse: separate;
+	font-size: 13px;
+	border-spacing: 0;
 } 
-.cellTableLoading{
+.cellTableLoading {
 	display: block;
 	margin: 0 auto;
 	top: 50%;
 }
-.cellTableFirstColumn { 
-} 
 
 .cellTableLastColumn { 
 } 
@@ -16,24 +20,38 @@
 .cellTableFooter { 
 } 
 
-.cellTableHeader { 
-  border-bottom: 1px solid #666666;
-  padding: 3px 6px 3px 6px; 
-  text-align: left; 
-  font-size:14px; 
-  color: #0099FF;
-  font-weight: normal;
-  white-space: nowrap;
+.cellTableHeader {
+	padding: 10px 10px 9px;
+  	padding-top: 9px;
+	font-weight: bold;
+	vertical-align: middle;
+	border-bottom: 1px solid #DDD;
+	border-left: 1px solid #DDD;
+	text-align: left;
+	line-height: 18px;
+	color: #404040;
+	font-size: 13px;
 } 
 
 .cellTableCell { 
-  padding: 6px 6px 6px 6px; 
-} 
+	padding: 6px 6px 6px 6px;
+	vertical-align: top;
+	padding: 10px 10px 9px;
+	text-align: left;
+	border-collapse: separate;
+	border-spacing: 0;
+	border-left: 1px solid #DDDDDD;
+}
+
+.cellTableFirstColumn {
+	border: none;
+}
 
 .cellTableFirstColumnFooter { 
 } 
 
-.cellTableFirstColumnHeader { 
+.cellTableFirstColumnHeader {
+	border-left: none;
 } 
 
 .cellTableLastColumnFooter { 
@@ -57,15 +75,13 @@
 } 
 
 .cellTableEvenRowCell { 
-  border: selectionBorderWidth solid white; 
 } 
 
 .cellTableOddRow { 
-  background: #EEE; 
+  background: #F9F9F9; 
 } 
 
 .cellTableOddRowCell { 
-  border: selectionBorderWidth solid #EFEFEF; 
 } 
 
 .cellTableHoveredRow { 
@@ -79,6 +95,13 @@
 	color: black;
 } 
 
+/** 
+ * The keyboard selected cell is visible over selection. 
+ */ 
+.cellTableKeyboardSelectedCell {
+	border-color: #0099FF;
+}
+
 .cellTableKeyboardSelectedRowCell { 
 } 
 
@@ -86,16 +109,10 @@
   background: #0099FF; 
   color: white; 
   height: auto; 
-  overflow: auto; 
+  overflow: auto;
+  border-color: #0099FF;
 } 
 
 .cellTableSelectedRowCell { 
-  border: selectionBorderWidth solid #0099FF; 
-} 
-
-/** 
- * The keyboard selected cell is visible over selection. 
- */ 
-.cellTableKeyboardSelectedCell { 
-  border: selectionBorderWidth solid #d7dde8; 
+  border-color: #0099FF; 
 }

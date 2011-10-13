@@ -1,48 +1,46 @@
-@external .ui-dialog, .ui-dialog-titlebar, .ui-widget-content, .ui-dialog-content, .ui-corner-all;
+@external .ui-dialog, .ui-dialog-titlebar, .ui-widget-content, .ui-dialog-content, .ui-corner-all, .ui-dialog-titlebar-close;
 
 .ui-dialog {
-    padding: 0px;
-    background: none;
-    background-color: #E3E3E3;
-    -moz-box-shadow: 5px 5px 5px #ccc;
-    -webkit-box-shadow: 5px 5px 5px #ccc;
-    box-shadow: 5px 5px 5px #ccc;
-    font-size: 11px;
-    border: 1px solid #A9A9A9;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+    padding: 0;
 }
-.ui-dialog.ui-corner-all {
-    -webkit-border-bottom-left-radius: 0;
-    -webkit-border-bottom-right-radius: 0;
-    -moz-border-radius-bottomleft: 0;
-    -moz-border-radius-bottomright: 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-@sprite .ui-dialog-titlebar {
-    gwt-image: "titleBackground";
-    background-repeat: repeat-x;
-    background-position: top;
-    background-color: #E3E3E3;
-    height: 18px;
-    width: auto;
-    color: #4B4B4B;
+.ui-dialog-titlebar {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 18px;
+    color: #404040;
     border: none;
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-top-right-radius: 5px;
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-topright: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-bottom: 1px solid #EEEEEE;
+    background: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.ui-dialog-titlebar-close {
+    filter: alpha(opacity=40);
+    -khtml-opacity: 0.4;
+    -moz-opacity: 0.4;
+    opacity: 0.4;
+}
+.ui-dialog-titlebar-close:hover {
+    filter: alpha(opacity=20);
+    -khtml-opacity: 0.2;
+    -moz-opacity: 0.2;
+    opacity: 0.2;
 }
 .ui-widget-content {
     border: none;
 }
-.ui-dialog-content {
-    background-color: #E5E4E5 !important;
-    margin: 3px;
-    border: 1px solid #CAC9CA !important;
-    padding: 4px !important;
-    font-family: inherit;
-    font-size: inherit;
-    overflow: hidden !important;
+.ui-dialog .ui-dialog-content {
+   padding: 0;
 }

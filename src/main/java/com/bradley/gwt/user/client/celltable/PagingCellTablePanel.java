@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
+import com.google.gwt.user.cellview.client.AbstractCellTable;
 
 /**
  * A cell table that is encompassed by a panel. This bundles a tool bar
@@ -45,7 +46,7 @@ public class PagingCellTablePanel<T extends EntityProxy> extends Composite {
 	
 	protected Widget header;
 	
-	protected CellTable<T> table;
+	protected AbstractCellTable<T> table;
 	
 	protected Label noDataAvailable;
 	
@@ -53,13 +54,13 @@ public class PagingCellTablePanel<T extends EntityProxy> extends Composite {
 	
 	protected static final int PAGE_SIZE = 25;
 		
-	public PagingCellTablePanel(CellTable<T> table) {
+	public PagingCellTablePanel(AbstractCellTable<T> table) {
 		this(table, new SimplePager(TextLocation.CENTER, (Resources) GWT.create(SimplePagerClientBundle.class), false, 0, true));
 		SimplePager p = (SimplePager) pager;
 		p.setPageSize(PAGE_SIZE);
 	}
 	
-	public PagingCellTablePanel(CellTable<T> table, AbstractPager pager) {
+	public PagingCellTablePanel(AbstractCellTable<T> table, AbstractPager pager) {
 		UIClientBundle.INSTANCE.getUICssResource().ensureInjected();
 		
 		this.table = table;
@@ -78,7 +79,7 @@ public class PagingCellTablePanel<T extends EntityProxy> extends Composite {
 		table.setEmptyTableWidget(noDataAvailable);
 	}
 	
-	public CellTable<T> getTable() {
+	public AbstractCellTable<T> getTable() {
 		return table;
 	}
 	
