@@ -13,4 +13,7 @@ public interface UIClientBundle extends ClientBundle {
 	
 	@Source("image/tick.png")
 	ImageResource tick();
+
+	@Source("css/editor-panel.css")
+	EditorPanelCssResource getEditorCssResource();
 }

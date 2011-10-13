@@ -1,0 +1,64 @@
+@external .label-field, .label, .required, .empty;
+
+input[type=text],
+input[type=password],
+textarea {
+	-webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-ms-transition: border linear 0.2s, box-shadow linear 0.2s;
+	-o-transition: border linear 0.2s, box-shadow linear 0.2s;
+	transition: border linear 0.2s, box-shadow linear 0.2s;
+	-webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+input[type=text],
+input[type=password],
+textarea, 
+select {
+	border: 1px solid #CCC;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 4px;
+    color: gray;
+    font-size: 13px;
+}
+
+.label-field {
+	margin-bottom: 5px;
+}
+
+.label-field input[type=text],
+.label-field input[type=password],
+.label-field textarea {
+	width: 230px;
+}
+
+.label-field textarea {
+	height: 100px;
+}
+
+.label-field div {
+	display: inline-block;
+}
+
+.label-field .label,
+.label-field label {
+    padding-top: 6px;
+	text-align: right;
+	vertical-align: top;
+    color: #404040;
+}
+
+.label-field.required .label,
+.label-field.required label {
+	font-weight: bold;
+}
+
+.label-field .empty {
+	color: #999;
+	font-style: italic;
+}

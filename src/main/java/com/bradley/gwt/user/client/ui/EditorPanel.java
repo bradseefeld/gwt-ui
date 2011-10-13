@@ -1,7 +1,7 @@
 package com.bradley.gwt.user.client.ui;
 
+import com.bradley.gwt.user.client.resource.EditorPanelCssResource;
 import com.bradley.gwt.user.client.resource.UIClientBundle;
-import com.bradley.gwt.user.client.resource.UICssResource;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.editor.client.Editor;
@@ -25,7 +25,7 @@ import com.google.gwt.user.client.ui.Composite;
  */
 public class EditorPanel<T> extends Composite implements Editor<T> {
 
-	protected static final UICssResource css = UIClientBundle.INSTANCE.getUICssResource();
+	protected static final EditorPanelCssResource css = UIClientBundle.INSTANCE.getEditorCssResource();
 	
 	public EditorPanel() {
 		css.ensureInjected();

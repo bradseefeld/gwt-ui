@@ -2,6 +2,8 @@ package com.bradley.gwt.user.client.ui;
 
 import com.bradley.gwt.user.client.resource.ButtonResources;
 import com.bradley.gwt.user.client.resource.ButtonResources.Style;
+import com.bradley.gwt.user.client.resource.UIClientBundle;
+import com.bradley.gwt.user.client.resource.UICssResource;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.PushButton;
 
@@ -16,6 +18,8 @@ public class Button extends PushButton {
 	
 	protected Style css;
 	
+	private static final UICssResource _css = UIClientBundle.INSTANCE.getUICssResource();
+	
 	public Button(String label, ButtonResources resources) {
 		setHTML(label);
 		
@@ -24,7 +28,8 @@ public class Button extends PushButton {
 		
 		addStyleName(css.button());
 		
-		css.ensureInjected();		
+		css.ensureInjected();
+		_css.ensureInjected();
 	}
 
 	public Button(String label) {

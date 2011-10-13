@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import com.bradley.gwt.demo.user.client.editor.EmployeeEditor;
 import com.bradley.gwt.demo.user.client.entity.EmployeeProxy;
 import com.bradley.gwt.demo.user.client.request.EmployeeRequestFactory;
 import com.bradley.gwt.user.client.animation.MoveAnimation;
@@ -21,7 +22,6 @@ import com.bradley.gwt.user.client.ui.CancelButton;
 import com.bradley.gwt.user.client.ui.ComboBox;
 import com.bradley.gwt.user.client.ui.DateTimeEditor;
 import com.bradley.gwt.user.client.ui.Dialog;
-import com.bradley.gwt.user.client.ui.EditorPanel;
 import com.bradley.gwt.user.client.ui.MenuButton;
 import com.bradley.gwt.user.client.ui.Notifier;
 import com.bradley.gwt.user.client.ui.Renderer;
@@ -51,12 +51,12 @@ public class TestApp implements EntryPoint {
 	@Override
 	public void onModuleLoad() {
 
-		demoCellTableDialog();
+		//demoCellTableDialog();
 		//demoNotifications();
 		//demoMoveAnimation();
 		//demoButtons();
 		//demoDualListBox();
-		//demoEditorPanel();
+		demoEditorPanel();
 		//demoMasking();
 		//demoDialog();
 		//demoComboBox();
@@ -172,7 +172,7 @@ public class TestApp implements EntryPoint {
 		//Mask.mask(element.getElement());
 	}
 	protected void demoEditorPanel() {
-		EditorPanel editor = new EditorPanel();
+		EmployeeEditor editor = new EmployeeEditor();
 		RootPanel.get().add(editor);
 	}
 

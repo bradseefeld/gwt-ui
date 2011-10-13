@@ -12,34 +12,12 @@ div:focus {
     -webkit-border-radius: 3px;
     -khtml-border-radius: 3px;
 }
-@external .label-field, .label, .required, .empty;
-.label-field {
-	margin-bottom: 5px;
-}
-.label-field input[type=text], .label-field textarea {
-	width: 230px;
-}
-.label-field textarea {
-	height: 100px;
-}
-.label-field div {
-	display: inline-block;
-}
-.label {
-	text-align: right;
-	vertical-align: top;
-	white-space: nowrap;
-}
-.label-field.required .label {
-	font-weight: bold;
-}
-.label-field .empty {
-	color: #999;
-	font-style: italic;
-}
+
 /* When there is no data available in a grid. */
 .no-data {
 	font-size: 22px;
 	font-style: italic;
 	color: #999;
 }
+
+
