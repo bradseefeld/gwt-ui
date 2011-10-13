@@ -14,6 +14,9 @@
 			</e:ValueBoxEditorDecorator>
 		</div>
 		
-		<b:SaveButton ui:field="save" />
+		<div class="buttons">
+			<a class="cancel" href="#">Cancel</a>
+			<b:SaveButton ui:field="save" />
+		</div>
 	</g:HTMLPanel>
 </ui:UiBinder>

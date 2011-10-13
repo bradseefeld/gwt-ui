@@ -1,4 +1,4 @@
-@external .label-field, .label, .required, .empty;
+@external .label-field, .label, .required, .empty, .buttons, .cancel;
 
 input[type=text],
 input[type=password],
@@ -61,4 +61,23 @@ select {
 .label-field .empty {
 	color: #999;
 	font-style: italic;
+}
+
+.buttons {
+    background-color: whiteSmoke;
+    padding: 14px 15px 15px;
+    border-top: 1px solid #DDD;
+    -webkit-box-shadow: inset 0 1px 0 #ffffff;
+    -moz-box-shadow: inset 0 1px 0 #ffffff;
+    box-shadow: inset 0 1px 0 #ffffff;
+    zoom: 1;
+    margin-bottom: 0;
+    -webkit-border-radius: 0 0 6px 6px;
+    -moz-border-radius: 0 0 6px 6px;
+    border-radius: 0 0 6px 6px;
+}
+
+.buttons .cancel {
+    float: right;
+    margin-right: 40px;
 }
