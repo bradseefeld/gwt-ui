@@ -115,5 +115,6 @@ public class ValueBoxEditorDecorator<T> extends Composite implements
 
 		errorLabel.setInnerText(sb.substring(1));
 		errorLabel.getStyle().setDisplay(Display.INLINE_BLOCK);
+		addStyleName("error");
 	}
 }

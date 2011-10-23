@@ -1,4 +1,4 @@
-@external .ui-dialog, .ui-dialog-titlebar, .ui-widget-content, .ui-dialog-content, .ui-corner-all, .ui-dialog-titlebar-close;
+@external .ui-dialog, .ui-dialog-titlebar, .ui-widget-content, .ui-dialog-content, .ui-corner-all, .ui-dialog-titlebar-close, .ui-widget;
 
 .ui-dialog {
     background-color: white;
@@ -43,4 +43,9 @@
 }
 .ui-dialog .ui-dialog-content {
    padding: 0;
+}
+
+.ui-widget {
+    font-family: inherit;
+    font-size: inherit;
 }

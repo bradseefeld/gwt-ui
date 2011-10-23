@@ -118,9 +118,12 @@ public class MultiSelectListBox<M, T> extends ListBox implements LeafValueEditor
 			}
 		}
 		
-		lazySelectValues = null;
+		if (getItemCount() == 0 && lazySelectValues != null) {
+			// Remote data never loaded.
+			return lazySelectValues;
+		}
 		
-		LOG.fine("Dual list box selected values are: " + results.toString());
+		lazySelectValues = null;
 		return results;
 	}
 	
@@ -179,6 +182,6 @@ public class MultiSelectListBox<M, T> extends ListBox implements LeafValueEditor
 			return "";
 		}
 		
-		return "" + item.hashCode();
+		return item.toString();
 	}
 }

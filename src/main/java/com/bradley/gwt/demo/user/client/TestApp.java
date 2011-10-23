@@ -51,7 +51,7 @@ public class TestApp implements EntryPoint {
 	@Override
 	public void onModuleLoad() {
 
-		//demoCellTableDialog();
+		demoCellTableDialog();
 		//demoNotifications();
 		//demoMoveAnimation();
 		//demoButtons();

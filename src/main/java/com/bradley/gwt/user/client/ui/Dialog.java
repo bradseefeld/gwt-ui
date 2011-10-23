@@ -115,7 +115,8 @@ public class Dialog implements HasOneWidget {
 			autoOpen: false,
 			modal: modal,
 			title: title,
-			resizable: false
+			resizable: false,
+			zIndex: 2600
 		});
 	}-*/;
 }

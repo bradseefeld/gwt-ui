@@ -13,9 +13,18 @@
 }
 
 .superboxselect input {
-	border: none;
+	border: none !important;
 	background-color: transparent;
+	background: none !important;
 	outline: none;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+	-webkit-transition: none !important;
+	-mox-transition: none !important;
+	-ms-transition: none !important;
+	-o-transition: none !important;
+	transition: none !important;
 }
 
 .superboxselect ul, ul.autoComplete {

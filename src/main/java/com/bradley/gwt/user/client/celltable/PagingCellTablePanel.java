@@ -3,6 +3,7 @@ package com.bradley.gwt.user.client.celltable;
 import com.bradley.gwt.user.client.i18n.UIConstants;
 import com.bradley.gwt.user.client.resource.SimplePagerClientBundle;
 import com.bradley.gwt.user.client.resource.UIClientBundle;
+import com.bradley.gwt.user.client.ui.HasSorting;
 import com.bradley.gwt.user.client.ui.ToolBar;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.ResizeEvent;
@@ -10,7 +11,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.AbstractPager;
-import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.SimplePager;
 import com.google.gwt.user.cellview.client.SimplePager.Resources;
 import com.google.gwt.user.cellview.client.SimplePager.TextLocation;
@@ -19,7 +19,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
-import com.google.gwt.user.cellview.client.AbstractCellTable;
 
 /**
  * A cell table that is encompassed by a panel. This bundles a tool bar
@@ -46,7 +45,7 @@ public class PagingCellTablePanel<T extends EntityProxy> extends Composite {
 	
 	protected Widget header;
 	
-	protected AbstractCellTable<T> table;
+	protected HasSorting<T> table;
 	
 	protected Label noDataAvailable;
 	
@@ -54,13 +53,13 @@ public class PagingCellTablePanel<T extends EntityProxy> extends Composite {
 	
 	protected static final int PAGE_SIZE = 25;
 		
-	public PagingCellTablePanel(AbstractCellTable<T> table) {
+	public PagingCellTablePanel(CellTable<T> table) {
 		this(table, new SimplePager(TextLocation.CENTER, (Resources) GWT.create(SimplePagerClientBundle.class), false, 0, true));
 		SimplePager p = (SimplePager) pager;
 		p.setPageSize(PAGE_SIZE);
 	}
 	
-	public PagingCellTablePanel(AbstractCellTable<T> table, AbstractPager pager) {
+	public PagingCellTablePanel(CellTable<T> table, AbstractPager pager) {
 		UIClientBundle.INSTANCE.getUICssResource().ensureInjected();
 		
 		this.table = table;
@@ -79,7 +78,7 @@ public class PagingCellTablePanel<T extends EntityProxy> extends Composite {
 		table.setEmptyTableWidget(noDataAvailable);
 	}
 	
-	public AbstractCellTable<T> getTable() {
+	public HasSorting<T> getTable() {
 		return table;
 	}
 	

@@ -1,5 +1,6 @@
 package com.bradley.gwt.user.client.celltable;
 
+import com.bradley.gwt.user.client.ui.HasSorting;
 import com.google.gwt.core.client.GWT;
 
 /**
@@ -7,7 +8,7 @@ import com.google.gwt.core.client.GWT;
  * 
  * @param <T> The type being represented by the table.
  */
-public class CellTable<T> extends com.google.gwt.user.cellview.client.CellTable<T> {
+public class CellTable<T> extends com.google.gwt.user.cellview.client.CellTable<T> implements HasSorting<T> {
 
 	/**
 	 * Default constructor.
