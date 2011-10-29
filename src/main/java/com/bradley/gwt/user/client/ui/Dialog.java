@@ -98,6 +98,14 @@ public class Dialog implements HasOneWidget {
 		setMinHeight(widget.getElement(), pixelHeight);
 	}
 	
+	public void setWidth(int pixelWidth) {
+		setWidth(widget.getElement(), pixelWidth);
+	}
+	
+	protected static native void setWidth(Element el, int pixelWidth)/*-{
+		$wnd.$(el).dialog("option", "width", pixelWidth);
+	}-*/;
+	
 	protected static native void setMinHeight(Element el, int pixelHeight)/*-{
 		$wnd.$(el).dialog("option", "minHeight", pixelHeight);
 	}-*/;
