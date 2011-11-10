@@ -56,7 +56,7 @@ public class TestApp implements EntryPoint {
 		//demoMoveAnimation();
 		//demoButtons();
 		//demoDualListBox();
-		demoEditorPanel();
+		//demoEditorPanel();
 		//demoMasking();
 		//demoDialog();
 		//demoComboBox();
