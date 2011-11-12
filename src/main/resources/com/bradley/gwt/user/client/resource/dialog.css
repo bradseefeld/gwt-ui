@@ -27,13 +27,13 @@
     border-radius: 0;
 }
 .ui-dialog-titlebar-close {
-    filter: alpha(opacity=40);
+    filter: literal("alpha(opacity=40)");
     -khtml-opacity: 0.4;
     -moz-opacity: 0.4;
     opacity: 0.4;
 }
 .ui-dialog-titlebar-close:hover {
-    filter: alpha(opacity=20);
+    filter: literal("alpha(opacity=20)");
     -khtml-opacity: 0.2;
     -moz-opacity: 0.2;
     opacity: 0.2;
