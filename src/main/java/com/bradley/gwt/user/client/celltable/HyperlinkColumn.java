@@ -7,5 +7,5 @@ public abstract class HyperlinkColumn<T> extends Column<T, Hyperlink> {
 
 	public HyperlinkColumn() {
 		super(new HyperlinkCell());
-	}	
+	}
 }

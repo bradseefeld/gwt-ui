@@ -56,7 +56,8 @@ public class ToolTip extends FlowPanel implements HasWidgets {
 		//$wnd.$(tooltip).insertAfter($wnd.$(target));
 		$wnd.$(target).tooltip({
 			tip: tooltip,
-			predelay: 500 // Millis
+			predelay: 500, // Millis
+			delay: 800
 		}).dynamic({ bottom: { direction: 'down', bounce: true } });
 	}-*/;
 }
