@@ -9,4 +9,6 @@ public interface UICssResource extends CssResource {
 	
 	@ClassName("no-data")
 	String noData();
+	
+	String remove();
 }

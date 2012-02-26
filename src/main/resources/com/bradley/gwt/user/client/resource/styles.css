@@ -1,9 +1,11 @@
 div:focus {
     outline: none;
 }
+
 .hidden {
 	display: none;
 }
+
 @external .gwt-PushButton;
 .gwt-PushButton {
 	display: inline-block;
@@ -20,4 +22,8 @@ div:focus {
 	color: #999;
 }
 
-
+@external .remove;
+@sprite .remove {
+	gwt-image: "delete";
+	display: inline-block;
+}

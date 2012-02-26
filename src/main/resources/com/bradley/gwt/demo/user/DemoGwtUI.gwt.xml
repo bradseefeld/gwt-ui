@@ -4,8 +4,4 @@
 	<inherits name='com.bradley.gwt.user.User' />
 	<entry-point class='com.bradley.gwt.demo.user.client.TestApp' />
 	<source path="client" />
-	
-	<script src="/jquery.ui.multiselect-1.9-min.js" />
-	<script src="/jquery.ui.multiselect.filter-1.1-min.js" />
-	<stylesheet src="/jquery.ui.multiselect.css" />
 </module>

@@ -79,9 +79,6 @@ public class DedupedRemoteLogHandler extends RemoteLogHandlerBase {
 	}
 	
 	protected String createKey(LogRecord record) {
-		StringBuilder sb = new StringBuilder();
-		sb.append(record.getSourceClassName());
-		sb.append(record.getSourceMethodName());
-		return sb.toString();
+		return record.getMessage();
 	}
 }

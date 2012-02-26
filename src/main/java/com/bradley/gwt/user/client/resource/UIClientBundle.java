@@ -16,4 +16,7 @@ public interface UIClientBundle extends ClientBundle {
 
 	@Source("css/editor-panel.css")
 	EditorPanelCssResource getEditorCssResource();
+	
+	@Source("image/delete.png")
+	ImageResource delete();
 }
