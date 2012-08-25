@@ -6,6 +6,8 @@ import java.util.logging.Logger;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.dom.client.HasChangeHandlers;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -13,7 +15,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
-public class DateTimeEditor extends Composite implements LeafValueEditor<Date> {
+public class DateTimeEditor extends Composite implements LeafValueEditor<Date>, HasChangeHandlers {
 
 	@UiField
 	DateBox date;
@@ -42,9 +44,9 @@ public class DateTimeEditor extends Composite implements LeafValueEditor<Date> {
 		initWidget(binder.createAndBindUi(this));		
 	}
 	
-	public void addChangeHandler(ChangeHandler handler) {
-		date.addChangeHandler(handler);
+	public HandlerRegistration addChangeHandler(ChangeHandler handler) {
 		time.addChangeHandler(handler);
+		return date.addChangeHandler(handler);
 	}
 	
 	@Override
@@ -71,6 +73,27 @@ public class DateTimeEditor extends Composite implements LeafValueEditor<Date> {
 		if (time == null) {
 			return day;
 		}
+		
+		return DateTimeEditor.merge(day, time);
+	}
+	
+	public DateBox getDateBox() {
+		return date;
+	}
+	
+	public TimeBox getTimeBox() {
+		return time;
+	}
+	
+	public Label getDateLabel() {
+		return dateLabel;
+	}
+	
+	public Label getTimeLabel() {
+		return timeLabel;
+	}
+	
+	public static Date merge(Date day, Date time) {
 		LOG.finer("Raw time is " + time.getTime());
 		
 		long timeMillis = time.getTime() % (24 * 60 * 60 * 1000);
@@ -88,21 +111,5 @@ public class DateTimeEditor extends Composite implements LeafValueEditor<Date> {
 		LOG.finer("Milliseconds into day is " + timeMillis);
 		Date d = new Date(day.getTime() + timeMillis);
 		return d;
-	}
-	
-	public DateBox getDateBox() {
-		return date;
-	}
-	
-	public TimeBox getTimeBox() {
-		return time;
-	}
-	
-	public Label getDateLabel() {
-		return dateLabel;
-	}
-	
-	public Label getTimeLabel() {
-		return timeLabel;
 	}
 }

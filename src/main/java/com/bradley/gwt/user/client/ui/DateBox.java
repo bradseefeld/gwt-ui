@@ -85,8 +85,8 @@ public class DateBox extends Composite implements HasValue<Date>, HasAllFocusHan
 		setValue(value);		
 	}
 	
-	public void addChangeHandler(ChangeHandler handler) {
-		textbox.addChangeHandler(handler);
+	public HandlerRegistration addChangeHandler(ChangeHandler handler) {
+		return textbox.addChangeHandler(handler);
 	}
 	
 	@Override

@@ -11,6 +11,6 @@ package com.bradley.gwt.user.client.ui;
  * @param <M>
  * @param <T>
  */
-public class DualListBox<M, T> extends MultiSelectListBox<M, T> {
+public class DualListBox<M, T> extends MultiSelectSetBox<M, T> {
 
 }

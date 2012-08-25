@@ -91,7 +91,6 @@
 } 
 
 .cellTableKeyboardSelectedRow {
-	background-color: #0099FF;
 	color: black;
 } 
 
@@ -99,20 +98,17 @@
  * The keyboard selected cell is visible over selection. 
  */ 
 .cellTableKeyboardSelectedCell {
-	border-color: #0099FF;
+	border-color: none;
 }
 
 .cellTableKeyboardSelectedRowCell { 
 } 
 
 .cellTableSelectedRow { 
-  background: #0099FF; 
   color: white; 
   height: auto; 
   overflow: auto;
-  border-color: #0099FF;
 } 
 
 .cellTableSelectedRowCell { 
-  border-color: #0099FF; 
 }
