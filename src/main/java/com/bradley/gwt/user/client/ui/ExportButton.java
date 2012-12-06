@@ -1,14 +1,11 @@
 package com.bradley.gwt.user.client.ui;
 
-import com.bradley.gwt.user.client.resource.ExportButtonClientBundle;
-import com.google.gwt.core.client.GWT;
+import com.github.gwtbootstrap.client.ui.constants.IconType;
 
-public class ExportButton extends Button {
-	
-	private static final ExportButtonClientBundle resources = GWT.create(ExportButtonClientBundle.class);
-	
+public class ExportButton extends com.github.gwtbootstrap.client.ui.Button {
+		
 	public ExportButton(String label) {
-		super(label, resources);
+		super(label, IconType.DOWNLOAD_ALT);
 	}
 	
 	public ExportButton() {

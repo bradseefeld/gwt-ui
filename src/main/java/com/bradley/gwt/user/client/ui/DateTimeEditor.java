@@ -3,6 +3,9 @@ package com.bradley.gwt.user.client.ui;
 import java.util.Date;
 import java.util.logging.Logger;
 
+import com.github.gwtbootstrap.client.ui.ControlGroup;
+import com.github.gwtbootstrap.client.ui.ControlLabel;
+import com.github.gwtbootstrap.datepicker.client.ui.DateBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.editor.client.LeafValueEditor;
 import com.google.gwt.event.dom.client.ChangeHandler;
@@ -12,7 +15,6 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
 public class DateTimeEditor extends Composite implements LeafValueEditor<Date>, HasChangeHandlers {
@@ -24,10 +26,13 @@ public class DateTimeEditor extends Composite implements LeafValueEditor<Date>, 
 	TimeBox time;
 	
 	@UiField
-	Label dateLabel;
+	ControlLabel dateLabel;
 	
 	@UiField
-	Label timeLabel;
+	ControlLabel timeLabel;
+	
+	@UiField
+	ControlGroup timeGroup;
 	
 	protected DateTimeFormat dateFormat;
 	
@@ -85,12 +90,16 @@ public class DateTimeEditor extends Composite implements LeafValueEditor<Date>, 
 		return time;
 	}
 	
-	public Label getDateLabel() {
+	public ControlLabel getDateLabel() {
 		return dateLabel;
 	}
 	
-	public Label getTimeLabel() {
+	public ControlLabel getTimeLabel() {
 		return timeLabel;
+	}
+	
+	public ControlGroup getTimeGroup() {
+		return timeGroup;
 	}
 	
 	public static Date merge(Date day, Date time) {

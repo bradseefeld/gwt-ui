@@ -2,17 +2,24 @@
 	xmlns:g='urn:import:com.google.gwt.user.client.ui'
 	xmlns:e='urn:import:com.google.gwt.editor.ui.client'
 	xmlns:a='urn:import:com.google.gwt.editor.ui.client.adapters'
-	xmlns:b='urn:import:com.bradley.gwt.user.client.ui'>
+	xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'
+	xmlns:b2="urn:import:com.github.gwtbootstrap.datepicker.client.ui"
+	xmlns:b3='urn:import:com.bradley.gwt.user.client.ui'>
 
-	<g:HTMLPanel>
-		<div class="label-field required">
-			<g:Label text="Date" ui:field="dateLabel" addStyleNames="label auto" />
-			<b:DateBox ui:field="date" addStyleNames="field" />
-		</div>
-		
-		<div class="label-field required">
-			<g:Label text="Time" ui:field="timeLabel" addStyleNames="label auto" />
-			<b:TimeBox ui:field="time" addStyleNames="field" />
-		</div>
-	</g:HTMLPanel>
+	<b:Fieldset>
+		<b:ControlGroup>
+			<b:ControlLabel for="date" ui:field="dateLabel">Date</b:ControlLabel>
+			<b:Controls>
+				<b2:DateBox b:id="date" ui:field="date" />
+				<b:HelpInline>*</b:HelpInline>
+			</b:Controls>
+		</b:ControlGroup>
+		<b:ControlGroup ui:field="timeGroup">
+			<b:ControlLabel for="time" ui:field="timeLabel">Time</b:ControlLabel>
+			<b:Controls>
+				<b3:TimeBox ui:field="time" />
+				<b:HelpInline>*</b:HelpInline>
+			</b:Controls>
+		</b:ControlGroup>
+	</b:Fieldset>
 </ui:UiBinder>

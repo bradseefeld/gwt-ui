@@ -1,17 +1,15 @@
 package com.bradley.gwt.user.client.ui;
 
 import com.bradley.gwt.user.client.i18n.UIConstants;
-import com.bradley.gwt.user.client.resource.SaveButtonResources;
-import com.google.gwt.core.client.GWT;
+import com.github.gwtbootstrap.client.ui.constants.IconType;
 
-public class SaveButton extends Button {
+public class SaveButton extends com.github.gwtbootstrap.client.ui.Button {
 	
 	public SaveButton() {
 		this(UIConstants.INSTANCE.save());
 	}
 	
 	public SaveButton(String label) {
-		super(label,
-				(SaveButtonResources) GWT.create(SaveButtonResources.class));
+		super(label, IconType.SAVE);
 	}
 }

@@ -1,12 +1,13 @@
 package com.bradley.gwt.user.client.ui;
 
-import com.bradley.gwt.user.client.resource.RemoveButtonResources;
-import com.google.gwt.core.client.GWT;
+import com.github.gwtbootstrap.client.ui.constants.ButtonType;
+import com.github.gwtbootstrap.client.ui.constants.IconType;
 
-public class RemoveButton extends Button {
+public class RemoveButton extends com.github.gwtbootstrap.client.ui.Button {
 
 	public RemoveButton(String label) {
-		super(label, (RemoveButtonResources) GWT.create(RemoveButtonResources.class));
+		super(label, IconType.MINUS_SIGN);
+		setType(ButtonType.DANGER);
 	}
 	
 	public RemoveButton() {

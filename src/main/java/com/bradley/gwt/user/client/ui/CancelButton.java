@@ -1,14 +1,11 @@
 package com.bradley.gwt.user.client.ui;
 
 import com.bradley.gwt.user.client.i18n.UIConstants;
-import com.bradley.gwt.user.client.resource.CancelButtonResources;
-import com.google.gwt.core.client.GWT;
+import com.github.gwtbootstrap.client.ui.constants.IconType;
 
-public class CancelButton extends Button {
-	
+public class CancelButton extends com.github.gwtbootstrap.client.ui.Button {
 	
 	public CancelButton() {
-		super(UIConstants.INSTANCE.cancel(), 
-				(CancelButtonResources) GWT.create(CancelButtonResources.class));
+		super(UIConstants.INSTANCE.cancel(), IconType.BAN_CIRCLE);
 	}
 }

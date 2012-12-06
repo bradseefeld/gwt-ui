@@ -37,9 +37,13 @@ public class EditorPanel<T> extends Composite implements Editor<T> {
 
 			@Override
 			public void execute() {
-				focus(getElement());
-				autoWidth(getElement());
 				highlight(getElement());
+				
+				try {
+					focus(getElement());
+				} catch (Exception e) {
+					// Ignore. Get some focus exceptions from IE from time to time.
+				}
 			}
 		});
 	}
